@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  parkName: MyString
+  parkWebsite: MyString
+  parkHours: MyString
+  parkAddress: MyString
+
+two:
+  parkName: MyString
+  parkWebsite: MyString
+  parkHours: MyString
+  parkAddress: MyString

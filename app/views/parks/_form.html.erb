@@ -1,0 +1,37 @@
+<%= form_for(park) do |f| %>
+  <% if park.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(park.errors.count, "error") %> prohibited this park from being saved:</h2>
+
+      <ul>
+      <% park.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :parkName %>
+    <%= f.text_field :parkName %>
+  </div>
+
+  <div class="field">
+    <%= f.label :parkWebsite %>
+    <%= f.text_field :parkWebsite %>
+  </div>
+
+  <div class="field">
+    <%= f.label :parkHours %>
+    <%= f.text_field :parkHours %>
+  </div>
+
+  <div class="field">
+    <%= f.label :parkAddress %>
+    <%= f.text_field :parkAddress %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
