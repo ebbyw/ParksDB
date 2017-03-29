@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hiking: 
+  biking: 
+  droneField: 
+  garden: 
+  greenhouse: 
+  camping: 
+  dogPark: 
+  lake: 
+  fishing: 
+
+two:
+  hiking: 
+  biking: 
+  droneField: 
+  garden: 
+  greenhouse: 
+  camping: 
+  dogPark: 
+  lake: 
+  fishing: 

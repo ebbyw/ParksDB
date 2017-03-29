@@ -1,0 +1,2 @@
+class ParkOffice < ApplicationRecord
+end

@@ -1,0 +1,42 @@
+<%= form_for(park_office) do |f| %>
+  <% if park_office.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(park_office.errors.count, "error") %> prohibited this park_office from being saved:</h2>
+
+      <ul>
+      <% park_office.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :officeAddress %>
+    <%= f.text_field :officeAddress %>
+  </div>
+
+  <div class="field">
+    <%= f.label :officeHours %>
+    <%= f.text_field :officeHours %>
+  </div>
+
+  <div class="field">
+    <%= f.label :officeEmail %>
+    <%= f.text_field :officeEmail %>
+  </div>
+
+  <div class="field">
+    <%= f.label :officePhone %>
+    <%= f.text_field :officePhone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :parkHasEntranceFee %>
+    <%= f.check_box :parkHasEntranceFee %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Officeaddress:</strong>
+  <%= @park_office.officeAddress %>
+</p>
+
+<p>
+  <strong>Officehours:</strong>
+  <%= @park_office.officeHours %>
+</p>
+
+<p>
+  <strong>Officeemail:</strong>
+  <%= @park_office.officeEmail %>
+</p>
+
+<p>
+  <strong>Officephone:</strong>
+  <%= @park_office.officePhone %>
+</p>
+
+<p>
+  <strong>Parkhasentrancefee:</strong>
+  <%= @park_office.parkHasEntranceFee %>
+</p>
+
+<%= link_to 'Edit', edit_park_office_path(@park_office) %> |
+<%= link_to 'Back', park_offices_path %>

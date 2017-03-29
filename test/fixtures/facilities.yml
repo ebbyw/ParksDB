@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  playground: 
+  picnicShelter: 
+  picnicArea: 
+  grill: 
+  excerciseEquipment: 
+  stage: 
+  recycling: 
+  compost: 
+  restroom: 
+  bikeParking: 
+  parking: 
+  food: 
+  boathouse: 
+  skateBoarding: 
+  iceSkating: 
+  tetherball: 
+
+two:
+  playground: 
+  picnicShelter: 
+  picnicArea: 
+  grill: 
+  excerciseEquipment: 
+  stage: 
+  recycling: 
+  compost: 
+  restroom: 
+  bikeParking: 
+  parking: 
+  food: 
+  boathouse: 
+  skateBoarding: 
+  iceSkating: 
+  tetherball: 

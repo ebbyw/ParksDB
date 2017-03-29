@@ -1,0 +1,97 @@
+<%= form_for(facility) do |f| %>
+  <% if facility.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(facility.errors.count, "error") %> prohibited this facility from being saved:</h2>
+
+      <ul>
+      <% facility.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :playground %>
+    <%= f.text_field :playground %>
+  </div>
+
+  <div class="field">
+    <%= f.label :picnicShelter %>
+    <%= f.text_field :picnicShelter %>
+  </div>
+
+  <div class="field">
+    <%= f.label :picnicArea %>
+    <%= f.text_field :picnicArea %>
+  </div>
+
+  <div class="field">
+    <%= f.label :grill %>
+    <%= f.text_field :grill %>
+  </div>
+
+  <div class="field">
+    <%= f.label :excerciseEquipment %>
+    <%= f.text_field :excerciseEquipment %>
+  </div>
+
+  <div class="field">
+    <%= f.label :stage %>
+    <%= f.text_field :stage %>
+  </div>
+
+  <div class="field">
+    <%= f.label :recycling %>
+    <%= f.text_field :recycling %>
+  </div>
+
+  <div class="field">
+    <%= f.label :compost %>
+    <%= f.text_field :compost %>
+  </div>
+
+  <div class="field">
+    <%= f.label :restroom %>
+    <%= f.text_field :restroom %>
+  </div>
+
+  <div class="field">
+    <%= f.label :bikeParking %>
+    <%= f.text_field :bikeParking %>
+  </div>
+
+  <div class="field">
+    <%= f.label :parking %>
+    <%= f.text_field :parking %>
+  </div>
+
+  <div class="field">
+    <%= f.label :food %>
+    <%= f.text_field :food %>
+  </div>
+
+  <div class="field">
+    <%= f.label :boathouse %>
+    <%= f.text_field :boathouse %>
+  </div>
+
+  <div class="field">
+    <%= f.label :skateBoarding %>
+    <%= f.text_field :skateBoarding %>
+  </div>
+
+  <div class="field">
+    <%= f.label :iceSkating %>
+    <%= f.text_field :iceSkating %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tetherball %>
+    <%= f.text_field :tetherball %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

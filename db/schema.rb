@@ -10,10 +10,55 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329062037) do
+ActiveRecord::Schema.define(version: 20170329171945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "facilities", force: :cascade do |t|
+    t.integer  "playground"
+    t.integer  "picnicShelter"
+    t.integer  "picnicArea"
+    t.integer  "grill"
+    t.integer  "excerciseEquipment"
+    t.integer  "stage"
+    t.integer  "recycling"
+    t.integer  "compost"
+    t.integer  "restroom"
+    t.integer  "bikeParking"
+    t.integer  "parking"
+    t.integer  "food"
+    t.integer  "boathouse"
+    t.integer  "skateBoarding"
+    t.integer  "iceSkating"
+    t.integer  "tetherball"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "natures", force: :cascade do |t|
+    t.integer  "hiking"
+    t.integer  "biking"
+    t.integer  "droneField"
+    t.integer  "garden"
+    t.integer  "greenhouse"
+    t.integer  "camping"
+    t.integer  "dogPark"
+    t.integer  "lake"
+    t.integer  "fishing"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "park_offices", force: :cascade do |t|
+    t.string   "officeAddress"
+    t.string   "officeHours"
+    t.string   "officeEmail"
+    t.string   "officePhone"
+    t.boolean  "parkHasEntranceFee"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
 
   create_table "parks", force: :cascade do |t|
     t.string   "parkName"
@@ -22,6 +67,22 @@ ActiveRecord::Schema.define(version: 20170329062037) do
     t.string   "parkAddress"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "sports", force: :cascade do |t|
+    t.integer  "baseball"
+    t.integer  "basketball"
+    t.integer  "lacrosse"
+    t.integer  "tennis"
+    t.integer  "soccer"
+    t.integer  "volleyball"
+    t.integer  "football"
+    t.integer  "frisbee"
+    t.integer  "golf"
+    t.integer  "cricket"
+    t.integer  "track"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
