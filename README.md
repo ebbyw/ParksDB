@@ -7,6 +7,8 @@
 	5.0.2
 
 * System dependencies
+	Python
+	Postgresql
 
 * Configuration
 
