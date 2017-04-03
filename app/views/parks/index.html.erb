@@ -1,33 +1,52 @@
-<p id="notice"><%= notice %></p>
+<style>
+	body {
+		padding-top: 50px;
+	}
 
-<h1>Parks</h1>
+	.starter-template {
+		padding: 40px 15px;
+		text-align: center;
+	}
+</style>
 
-<table>
-  <thead>
-    <tr>
-      <th>Parkname</th>
-      <th>Parkwebsite</th>
-      <th>Parkhours</th>
-      <th>Parkaddress</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">ParksDB</a>
+		</div>
+		<div id="navbar" class="collapse navbar-collapse">
+			<div class="col-sm-6 col-md-6 pull-left">
+				<form class="navbar-form" role="search">
+					<div style="display:table;" class="input-group">
+            <input type="text" autofocus="autofocus" autocomplete="off" placeholder="City, State or ZIP" name="search" style="" class="form-control">
+            <span style="width: 1%;" class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+					</div>
+				</form>
+			</div>
 
-  <tbody>
-    <% @parks.each do |park| %>
-      <tr>
-        <td><%= park.parkName %></td>
-        <td><%= park.parkWebsite %></td>
-        <td><%= park.parkHours %></td>
-        <td><%= park.parkAddress %></td>
-        <td><%= link_to 'Show', park %></td>
-        <td><%= link_to 'Edit', edit_park_path(park) %></td>
-        <td><%= link_to 'Destroy', park, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+			<div class="col-sm-3 col-md-3 pull-right">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a href="#about">About</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
+			</div>
+			
+		</div><!--/.nav-collapse -->
+	</div>
+</nav>
 
-<br>
+<div class="container">
 
-<%= link_to 'New Park', new_park_path %>
+	<div class="starter-template">
+		<h1>Search Results</h1>
+		<p class="lead">Will operate like an apt or home buying search website, left hald will be a map, right half will be atable view with filter options.</p>
+	</div>
+
+</div><!-- /.container -->
