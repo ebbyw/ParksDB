@@ -7,6 +7,10 @@
 		padding: 40px 15px;
 		text-align: center;
 	}
+	#map {
+        height: 400px;
+        width: 100%;
+   }
 </style>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -44,9 +48,31 @@
 
 <div class="container">
 
-	<div class="starter-template">
-		<h1>Search Results</h1>
-		<p class="lead">Will operate like an apt or home buying search website, left hald will be a map, right half will be atable view with filter options.</p>
-	</div>
+<div class="col-sm-12 col-md-9 pull-left">
+	<div id="map"></div>
+	<script>
+function initMap() {
+	var uluru = {lat: -25.363, lng: 131.044};
+	var map = new google.maps.Map(document.getElementById('map'), {
+	  zoom: 4,
+	  center: uluru
+});
+var marker = new google.maps.Marker({
+	position: uluru,
+	map: map
+});
+}
+</script>
+</div>
+<div class="col-md-3 sidebar">
+<ul class="nav nav-sidebar">
+<li>I'm where the filters will be</li>
+<li>Optiooon</li>
+</ul>
+</div>
 
 </div><!-- /.container -->
+
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBSaQmP0Ff65kmrv1iYc6O7Pq5SY5eclc&callback=initMap">
+</script>
