@@ -41,7 +41,10 @@ gem 'adminlte2-rails' #Bootstrap-based Dashboard theme
 gem 'devise'
 
 #Address parsing
-gem 'StreetAddress', :require => "street_address"
+# gem 'StreetAddress', :require => "street_address"
+
+#Geolocation calculations
+gem 'geokit-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

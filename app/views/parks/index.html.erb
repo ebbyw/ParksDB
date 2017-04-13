@@ -37,57 +37,87 @@
 
 <div class="container">
 
-	<div class="col-sm-12 col-md-9 pull-left">
+	<div class="col-sm-12 col-md-8 pull-left">
+		<div class="filters pre-scrollable">
+			<label class="checkbox-inline"><input type="checkbox" value="">Baseball</label>
+			<label class="checkbox-inline"><input type="checkbox" value="">Basketball</label>
+			<label class="checkbox-inline"><input type="checkbox" value="">Cricket</label>
+			<label class="checkbox-inline"><input type="checkbox" value="">Football</label>
+			<label class="checkbox-inline"><input type="checkbox" value="">Frisbee</label>
+			<label class="checkbox-inline"><input type="checkbox" value="">Golf</label>
+			<label class="checkbox-inline"><input type="checkbox" value="">Lacrosse</label>
+			<label class="checkbox-inline"><input type="checkbox" value="">Soccer</label>
+			<label class="checkbox-inline"><input type="checkbox" value="">Tennis</label>
+			<label class="checkbox-inline"><input type="checkbox" value="">Track</label>
+			<label class="checkbox-inline"><input type="checkbox" value="">Volleyball</label>
+		</div>
 		<div id="map"></div>
 		<script>
+			//create empty LatLngBounds object
 			function initMap() {
 				var LakeWashington = {lat: 47.623, lng: -122.260};
+				var bounds = new google.maps.LatLngBounds();
 				var map = new google.maps.Map(document.getElementById('map'), {
 				  zoom: 11,
 				  center: LakeWashington
 				});
-				var geocoder = new google.maps.Geocoder();
 				<% @parks.each do |park| %>
-				geocodeAddress(geocoder, map, '<%= park.parkAddress %>', '<%= park_path(park) %>', 'park<%= park.id %>');
+				addMarker(map, bounds, <%= park.lattitude %>, <%= park.longitude %>, 'park<%= park.id %>', '<%= park_path(park) %>');
 				<% end %>
+				map.fitBounds(bounds);
 			}
 
-			function geocodeAddress(geocoder, resultsMap, address, webpage, parkID) {
-				geocoder.geocode({'address': address}, function(results, status) {
-				  if (status === 'OK') {
-					// resultsMap.setCenter(results[0].geometry.location);
-					var marker = new google.maps.Marker({
-					  map: resultsMap,
-					  position: results[0].geometry.location
-					});
+			function addMarker(resultsMap, mapBounds, parkLat, parkLong, parkID, parkWebpage) {
+				var markerLocation = {lat: parkLat, lng: parkLong};
+				var marker = new google.maps.Marker({
+					map: resultsMap,
+					position: markerLocation
+				});
 
-					marker.addListener('click', function() {
-				    	window.open(webpage, "_self");
-			        });
+				//extend the bounds to include each marker's position
+				mapBounds.extend(marker.position);
 
-					marker.addListener('mouseover', function(){
-						$("li#"+parkID).addClass('highlightedPark');
-					});
+				marker.addListener('click', function() {
+					window.open(parkWebpage, "_self");
+				});
 
-					marker.addListener('mouseout', function(){
-						 $("li#"+parkID).removeClass('highlightedPark');
-					});
-			        
-			        return results[0].geometry.location;
-				  } else {
-					alert('Geocode was not successful for the following reason: ' + status);
-					return 0;
-				  }
+				marker.addListener('mouseover', function(){
+					$("li#"+parkID).addClass('highlightedPark');
+				});
+
+				marker.addListener('mouseout', function(){
+					 $("li#"+parkID).removeClass('highlightedPark');
 				});
 			}
 		</script>
 	</div>
-	<div class="col-md-3 sidebar">
-		<ul class="nav nav-sidebar">
+	<div class="col-md-4 sidebar">
+		<h3>Search Results</h3>
+		<% if @parks.count > 0 %>
+		<table class="table table-striped table-bordered table-hover">
+			<thead>
+			    <tr>
+				    <th>Park Name</th>
+				    <th>Address</th>
+				    <th>Hours</th>
+			    </tr>
+		  	</thead>
+		  	<tbody data-link="row" class="rowlink">
+		  	<% @parks.each do |park| %>
+			    <tr id="park<%= park.id %>">
+				    <td><a href="<%= park_path(park) %>"><%= park.parkName %></a></td>
+				    <td><%= park.parkAddress%></td>
+				    <td><%= park.parkHours%></td>
+			    </tr>
+			<% end %> <!-- end @parks.each do |park| -->
+			</tbody>
+		</table>
+		<% end %> <!-- end if @parks.count > 0 -->
+		<!-- <ul class="nav nav-sidebar">
 			<% @parks.each do |park| %>
 			<li id="park<%= park.id %>"><a href="<%= park_path(park) %>"><%=park.parkName%></a></li>
 			<% end %>
-		</ul>
+		</ul> -->
 	</div>
 
 </div><!-- /.container -->

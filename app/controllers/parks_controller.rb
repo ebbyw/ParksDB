@@ -4,12 +4,11 @@ class ParksController < ApplicationController
   # GET /parks
   # GET /parks.json
   def index
-    @parks = Park.all
+    @parks = Park.search(params[:search])
+    if @parks.count < 1
+      @parks = Park.all
+    end
   end
-
-  # def search(searchLocation)
-  #   @parks_in_area = Park.()
-  # end
 
   # GET /parks/1
   # GET /parks/1.json
