@@ -7,8 +7,10 @@ class Park < ApplicationRecord
 	def self.search (search_params)
 		if search_params
 			within(5, :origin => search_params).all
-		else
-			find(:all)
 		end
+	end
+
+	def self.default
+		within(6, :origin => "Seattle, WA").all
 	end
 end

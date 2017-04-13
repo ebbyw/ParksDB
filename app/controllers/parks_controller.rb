@@ -4,9 +4,20 @@ class ParksController < ApplicationController
   # GET /parks
   # GET /parks.json
   def index
-    @parks = Park.search(params[:search])
-    if @parks.count < 1
-      @parks = Park.all
+    if !params[:search]
+      @parks = Park.default
+    else
+      @parks = Park.search(params[:search])
+      if @parks.count < 1
+        #TODO: create a "No Results" scenario
+        @parks = Park.default
+      end
+    end
+
+    if params[:sports]
+        params[:sports].each do |sport| 
+          #check for presence of sport in @parks
+        end
     end
   end
 

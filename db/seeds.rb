@@ -14,5 +14,6 @@ parks = Park.create([
 	{parkName:'Wapato Park', parkWebsite: 'http://www.metroparkstacoma.org/wapato-park/', parkHours:'Sunrise - Sunset', parkAddress:'6500 S Sheridan Ave, Tacoma, WA 98408', lattitude:47.198294, longitude:-122.4546408},
 	{parkName:'Green Lake Park', parkWebsite: 'http://www.seattle.gov/parks/find/parks/green-lake-park', parkHours:'24 hours', parkAddress:'7201 E Greenlake Dr. N, Seattle, WA 98115', lattitude:47.6802168, longitude:-122.3305128},
 	{parkName:'Juanita Bay Park', parkWebsite: 'http://www.explorekirkland.com/Do/Parks/Juanita_Bay_Park.htm', parkHours:'Sunrise - Sunset', parkAddress:'2201 Market St, Kirkland, WA 98033', lattitude:47.6952207, longitude:-122.2126898},
-	{parkName:'Marina Park', parkWebsite: 'http://www.explorekirkland.com/Do/Parks/Marina_Park.htm', parkHours:'24 hours', parkAddress:'25 Lakeshore Plaza, Kirkland, WA 98033',lattitude:47.6753452, longitude:-122.2098626}
-	])
+	{parkName:'Marina Park', parkWebsite: 'http://www.explorekirkland.com/Do/Parks/Marina_Park.htm', parkHours:'24 hours', parkAddress:'25 Lakeshore Plaza, Kirkland, WA 98033',lattitude:47.6753452, longitude:-122.2098626},
+	{parkName:'Browns Point Lighthouse Park', parkWebsite: 'http://www.metroparkstacoma.org/browns-point-lighthouse-park', parkHours:'Sunrise - Sunset', parkAddress:'201 Tulalip St NE, Tacoma, WA 98422',lattitude:47.3056915, longitude:-122.4453574}	
+])
