@@ -31,8 +31,10 @@
 			<div class="col-sm-6 col-md-6 pull-left">
 				<form class="navbar-form" role="search">
 					<div style="display:table;" class="input-group">
-			<input type="text" autofocus="autofocus" autocomplete="off" placeholder="City, State or ZIP" name="search" style="" class="form-control">
-			<span style="width: 1%;" class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+						<input type="text" autofocus="autofocus" autocomplete="off" placeholder="City, State or ZIP" name="search" style="" class="form-control">
+						<span style="width: 1%;" class="input-group-addon">
+							<span class="glyphicon glyphicon-search"></span>
+						</span>
 					</div>
 				</form>
 			</div>
@@ -69,7 +71,7 @@
 			function geocodeAddress(geocoder, resultsMap, address, webpage, parkID) {
 				geocoder.geocode({'address': address}, function(results, status) {
 				  if (status === 'OK') {
-					resultsMap.setCenter(results[0].geometry.location);
+					// resultsMap.setCenter(results[0].geometry.location);
 					var marker = new google.maps.Marker({
 					  map: resultsMap,
 					  position: results[0].geometry.location
@@ -87,8 +89,10 @@
 						 $("li#"+parkID).removeClass('highlightedPark');
 					});
 			        
+			        return results[0].geometry.location;
 				  } else {
 					alert('Geocode was not successful for the following reason: ' + status);
+					return 0;
 				  }
 				});
 			}

@@ -7,6 +7,10 @@ class ParksController < ApplicationController
     @parks = Park.all
   end
 
+  # def search(searchLocation)
+  #   @parks_in_area = Park.()
+  # end
+
   # GET /parks/1
   # GET /parks/1.json
   def show

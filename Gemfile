@@ -39,6 +39,9 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'adminlte2-rails' #Bootstrap-based Dashboard theme
 gem 'devise'
 
+#Address parsing
+gem 'StreetAddress', :require => "street_address"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
