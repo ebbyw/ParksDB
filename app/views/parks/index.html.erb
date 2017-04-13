@@ -11,6 +11,9 @@
 		height: 400px;
         width: 100%;
    }
+   .highlightedPark {
+   		outline: #00FF00 dotted thick;
+   }
 </style>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -76,7 +79,13 @@
 				    	window.open(webpage, "_self");
 			        });
 
-					marker.hover = document.getElementById(parkID).hover;
+					marker.addListener('mouseover', function(){
+						$("li#"+parkID).addClass('highlightedPark');
+					});
+
+					marker.addListener('mouseout', function(){
+						 $("li#"+parkID).removeClass('highlightedPark');
+					});
 			        
 				  } else {
 					alert('Geocode was not successful for the following reason: ' + status);
@@ -88,7 +97,7 @@
 	<div class="col-md-3 sidebar">
 		<ul class="nav nav-sidebar">
 			<% @parks.each do |park| %>
-			<li><a id="park<%= park.id %>" href="<%= park_path(park) %>"><%=park.parkName%></a></li>
+			<li id="park<%= park.id %>"><a href="<%= park_path(park) %>"><%=park.parkName%></a></li>
 			<% end %>
 		</ul>
 	</div>
