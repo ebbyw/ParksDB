@@ -8,7 +8,7 @@
 		text-align: center;
 	}
 	#map {
-        height: 400px;
+		height: 400px;
         width: 100%;
    }
 </style>
@@ -28,8 +28,8 @@
 			<div class="col-sm-6 col-md-6 pull-left">
 				<form class="navbar-form" role="search">
 					<div style="display:table;" class="input-group">
-            <input type="text" autofocus="autofocus" autocomplete="off" placeholder="City, State or ZIP" name="search" style="" class="form-control">
-            <span style="width: 1%;" class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+			<input type="text" autofocus="autofocus" autocomplete="off" placeholder="City, State or ZIP" name="search" style="" class="form-control">
+			<span style="width: 1%;" class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
 					</div>
 				</form>
 			</div>
@@ -48,31 +48,52 @@
 
 <div class="container">
 
-<div class="col-sm-12 col-md-9 pull-left">
-	<div id="map"></div>
-	<script>
-function initMap() {
-	var uluru = {lat: -25.363, lng: 131.044};
-	var map = new google.maps.Map(document.getElementById('map'), {
-	  zoom: 4,
-	  center: uluru
-});
-var marker = new google.maps.Marker({
-	position: uluru,
-	map: map
-});
-}
-</script>
-</div>
-<div class="col-md-3 sidebar">
-<ul class="nav nav-sidebar">
-<li>I'm where the filters will be</li>
-<li>Optiooon</li>
-</ul>
-</div>
+	<div class="col-sm-12 col-md-9 pull-left">
+		<div id="map"></div>
+		<script>
+			function initMap() {
+				var LakeWashington = {lat: 47.623, lng: -122.260};
+				var map = new google.maps.Map(document.getElementById('map'), {
+				  zoom: 11,
+				  center: LakeWashington
+				});
+				var geocoder = new google.maps.Geocoder();
+				<% @parks.each do |park| %>
+				geocodeAddress(geocoder, map, '<%= park.parkAddress %>', '<%= park_path(park) %>', 'park<%= park.id %>');
+				<% end %>
+			}
+
+			function geocodeAddress(geocoder, resultsMap, address, webpage, parkID) {
+				geocoder.geocode({'address': address}, function(results, status) {
+				  if (status === 'OK') {
+					resultsMap.setCenter(results[0].geometry.location);
+					var marker = new google.maps.Marker({
+					  map: resultsMap,
+					  position: results[0].geometry.location
+					});
+
+					marker.addListener('click', function() {
+				    	window.open(webpage, "_self");
+			        });
+
+					marker.hover = document.getElementById(parkID).hover;
+			        
+				  } else {
+					alert('Geocode was not successful for the following reason: ' + status);
+				  }
+				});
+			}
+		</script>
+	</div>
+	<div class="col-md-3 sidebar">
+		<ul class="nav nav-sidebar">
+			<% @parks.each do |park| %>
+			<li><a id="park<%= park.id %>" href="<%= park_path(park) %>"><%=park.parkName%></a></li>
+			<% end %>
+		</ul>
+	</div>
 
 </div><!-- /.container -->
 
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBSaQmP0Ff65kmrv1iYc6O7Pq5SY5eclc&callback=initMap">
-</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBSaQmP0Ff65kmrv1iYc6O7Pq5SY5eclc&callback=initMap"></script>
