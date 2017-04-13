@@ -3,10 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  padding-top: 50px;
+	padding-top: 50px;
 }
 
 .starter-template {
-  padding: 40px 15px;
-  text-align: center;
+	padding: 40px 15px;
+	text-align: center;
+}
+
+#map {
+	height: 400px;
+	width: 100%;
+}
+
+.highlightedPark {
+	outline: #00FF00 dotted thick;
 }
