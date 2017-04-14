@@ -1,0 +1,27 @@
+/* line 5, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+body {
+  padding-top: 50px;
+}
+
+/* line 9, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+/* line 14, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+/* line 19, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+.highlightedPark {
+  outline: #00FF00 dotted thick;
+}
+
+/* line 23, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+.scrollableTable {
+  height: 100%;
+  overflow: auto;
+}
