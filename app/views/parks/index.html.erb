@@ -39,26 +39,6 @@
 <div class="container-fluid">
 
 	<div class="col-sm-12 col-md-7 pull-left">
-		<!-- <div class="filters pre-scrollable">
-			<form class="form" role="filters">
-				<div class="col-md-9 pull-left">
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Baseball">Baseball</label>
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Basketball">Basketball</label>
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Cricket">Cricket</label>
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Football">Football</label>
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Frisbee">Frisbee</label>
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Golf">Golf</label>
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Lacrosse">Lacrosse</label>
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Soccer">Soccer</label>
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Tennis">Tennis</label>
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Track">Track</label>
-				<label class="checkbox-inline"><input type="checkbox" name="sports[]" value="Volleyball">Volleyball</label>
-				</div>
-				<div class="col-md-3 pull-right">
-					<input class="btn" type="submit" value="Update Filters">
-				</div>
-			</form>
-		</div> -->
 		<div id="map"></div>
 		<script>
 			//create empty LatLngBounds object
@@ -86,23 +66,82 @@
 	</div>
 	<div class="col-md-5 sidebar">
 		<h3>Search Results</h3>
+		<div class="panel-group">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+				  <h4 class="panel-title">
+					<a data-toggle="collapse" href="#collapse1">Filters</a>
+				  </h4>
+				</div>
+				<div id="collapse1" class="panel-collapse collapse">
+				  <div class="panel-body">
+					<div class="col-md-4">
+						<h4>Sports</h4>
+						<div class="checkbox"><label><input type="checkbox" value="">Basketball</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Baseball</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Lacrosse</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Tennis</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Soccer</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Volleyball</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Football</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Frisbee</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Golf</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Cricket</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Track</label></div>
+					</div>
+					<div class="col-md-4">
+						<h4>Facilities</h4>
+						<div class="checkbox"><label><input type="checkbox" value="">Playground</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Picnic Shelter</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Picnic Area</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Grill</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Excercise Equipment</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Stage</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Recycling</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Compost</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Restrooms</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Bike Parking</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Car Parking</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Food</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Boathouse</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Skate Board Park</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Ice Skating Rink</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Tetherball</label></div>
+					</div>
+					<div class="col-md-4">
+						<h4>Nature</h4>
+						<div class="checkbox"><label><input type="checkbox" value="">Hiking Trails</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Bike Trails</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Drone Field</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Garden</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Greenhouse</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Camping</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Dog Area</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Lake</label></div>
+						<div class="checkbox"><label><input type="checkbox" value="">Fishing</label></div>
+					</div>
+				  </div>
+				  <!-- <div class="panel-footer">Panel Footer</div> -->
+				</div>
+			</div>
+		</div>
 		<% if @parks.count > 0 %>
 		<div class="scrollableTable">
 			<table class="table table-striped table-bordered table-hover">
 				<thead>
-				    <tr>
-					    <th>Park Name</th>
-					    <th>Address</th>
-					    <th>Hours</th>
-				    </tr>
-			  	</thead>
-			  	<tbody data-link="row" class="rowlink">
-			  	<% @parks.each do |park| %>
-				    <tr id="park<%= park.id %>">
-					    <td><a href="<%= park_path(park) %>"><%= park.parkName %></a></td>
-					    <td><%= park.parkAddress%></td>
-					    <td><%= park.parkHours%></td>
-				    </tr>
+					<tr>
+						<th>Park Name</th>
+						<th>Address</th>
+						<th>Hours</th>
+					</tr>
+				</thead>
+				<tbody data-link="row" class="rowlink">
+				<% @parks.each do |park| %>
+					<tr id="park<%= park.id %>">
+						<td><a href="<%= park_path(park) %>"><%= park.parkName %></a></td>
+						<td><%= park.parkAddress%></td>
+						<td><%= park.parkHours%></td>
+					</tr>
 				<% end %> <!-- end @parks.each do |park| -->
 				</tbody>
 			</table>
