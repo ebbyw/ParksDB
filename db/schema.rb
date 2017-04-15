@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170413041911) do
+ActiveRecord::Schema.define(version: 20170415210234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170413041911) do
     t.integer  "tetherball"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "park_id"
   end
 
   create_table "natures", force: :cascade do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(version: 20170413041911) do
     t.integer  "fishing"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "park_id"
   end
 
   create_table "park_offices", force: :cascade do |t|
@@ -58,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170413041911) do
     t.boolean  "parkHasEntranceFee"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "park_id"
   end
 
   create_table "parks", force: :cascade do |t|
@@ -85,6 +88,7 @@ ActiveRecord::Schema.define(version: 20170413041911) do
     t.integer  "track"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "park_id"
   end
 
 end
