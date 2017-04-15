@@ -1,3 +1,5 @@
+include Geokit::Geocoders
+
 class Park < ApplicationRecord
 	acts_as_mappable   :default_units => :miles,
 	                   :default_formula => :sphere,
@@ -8,13 +10,13 @@ class Park < ApplicationRecord
 	has_one :park_office
 	has_one :sport
 
-	def self.search (search_params)
-		if search_params
-			within(6, :origin => search_params).all
+	def self.withinDistanceFromLocation(maxDistance, location)
+		if(!maxDistance)
+			maxDistance = 6
 		end
-	end
-
-	def self.default
-		within(6, :origin => "Seattle, WA").all
+		if(!GoogleGeocoder.geocode(location).success)
+			return nil
+		end
+		within(maxDistance, :origin => location).all
 	end
 end

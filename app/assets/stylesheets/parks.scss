@@ -2,8 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body {
-	padding-top: 50px;
+h3, h4{
+	margin-top: 0px;
 }
 
 .starter-template {
@@ -23,4 +23,8 @@ body {
 .scrollableTable {
 	height: 100%;
 	overflow: auto;
+}
+
+.popover{
+    max-width: 100%; /* Max Width of the popover (depending on the container!) */
 }

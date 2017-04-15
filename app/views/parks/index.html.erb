@@ -10,20 +10,19 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">ParksDB</a>
+			<a class="navbar-brand" href=<%= root_path %>>ParksDB</a>
 		</div>
 		<div id="navbar" class="collapse navbar-collapse">
 			<div class="col-sm-6 col-md-6 pull-left">
-				<form class="navbar-form" role="search">
+				<form class="navbar-form searchForm" role="search">
 					<div style="display:table;" class="input-group">
-						<input type="text" autofocus="autofocus" autocomplete="off" placeholder="City, State or ZIP" name="search" style="" class="form-control">
+						<input type="text" autofocus="autofocus" autocomplete="off" placeholder="City, State or ZIP" name="location" style="" class="form-control" value="<%= params[:location] %>">
 						<span style="width: 1%;" class="input-group-addon">
 							<span class="glyphicon glyphicon-search"></span>
 						</span>
 					</div>
 				</form>
 			</div>
-
 			<div class="col-sm-3 col-md-3 pull-right">
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Home</a></li>
@@ -31,7 +30,6 @@
 				<li><a href="#contact">Contact</a></li>
 			</ul>
 			</div>
-			
 		</div><!--/.nav-collapse -->
 	</div>
 </nav>
@@ -52,77 +50,75 @@
 				<% @parks.each do |park| %>
 				addMarker(map, bounds, <%= park.lattitude %>, <%= park.longitude %>, 'park<%= park.id %>', '<%= park_path(park) %>');
 				<% end %>
-				
 				<% if @parks.count < 2 %>
 					map.setZoom (16);
 					map.setCenter(bounds.getCenter())
 				<% else %>
 					map.fitBounds(bounds);
 				<% end %>
-			}
-
-			
+			}	
 		</script>
 	</div>
 	<div class="col-md-5 sidebar">
 		<h3>Search Results</h3>
 		<div class="panel-group">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-				  <h4 class="panel-title">
-					<a data-toggle="collapse" href="#collapse1">Filters</a>
-				  </h4>
-				</div>
-				<div id="collapse1" class="panel-collapse collapse">
+			<div class="panel panel-default filters">
+			  <div class="panel-heading">
+				<form class="form-inline filtersForm" role="filters">
+					<label for="maxDistance" class="col-1 col-form-label">Maximum Distance</label>
+					<input class="form-control col-1" type="number" id="maxDistance" name="maxDistance" value="<%= params[:maxDistance]%>">
+					<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filtersPanel">Filters</button> 
+				  </form>
+			  </div>
+			  <div id="filtersPanel" class="panel-collapse collapse">
 				  <div class="panel-body">
-					<div class="col-md-4">
-						<h4>Sports</h4>
-						<div class="checkbox"><label><input type="checkbox" value="">Basketball</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Baseball</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Lacrosse</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Tennis</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Soccer</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Volleyball</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Football</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Frisbee</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Golf</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Cricket</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Track</label></div>
-					</div>
-					<div class="col-md-4">
-						<h4>Facilities</h4>
-						<div class="checkbox"><label><input type="checkbox" value="">Playground</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Picnic Shelter</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Picnic Area</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Grill</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Excercise Equipment</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Stage</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Recycling</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Compost</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Restrooms</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Bike Parking</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Car Parking</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Food</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Boathouse</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Skate Board Park</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Ice Skating Rink</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Tetherball</label></div>
-					</div>
-					<div class="col-md-4">
-						<h4>Nature</h4>
-						<div class="checkbox"><label><input type="checkbox" value="">Hiking Trails</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Bike Trails</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Drone Field</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Garden</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Greenhouse</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Camping</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Dog Area</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Lake</label></div>
-						<div class="checkbox"><label><input type="checkbox" value="">Fishing</label></div>
-					</div>
+						<div class="col-md-4">
+							<h4>Sports</h4>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="basketball"<% if @sportsParams && @sportsParams.include?('basketball') %> checked <% end %>>Basketball</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="baseball"<% if @sportsParams && @sportsParams.include?('baseball') %> checked <% end %>>Baseball</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="lacrosse"<% if @sportsParams && @sportsParams.include?('lacrosse') %> checked <% end %>>Lacrosse</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="tennis"<% if @sportsParams && @sportsParams.include?('tennis') %> checked <% end %>>Tennis</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="soccer"<% if @sportsParams && @sportsParams.include?('soccer') %> checked <% end %>>Soccer</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="volleyball"<% if @sportsParams && @sportsParams.include?('volleyball') %> checked <% end %>>Volleyball</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="football"<% if @sportsParams && @sportsParams.include?('football') %> checked <% end %>>Football</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="frisbee"<% if @sportsParams && @sportsParams.include?('frisbee') %> checked <% end %>>Frisbee</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="golf"<% if @sportsParams && @sportsParams.include?('golf') %> checked <% end %>>Golf</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="cricket"<% if @sportsParams && @sportsParams.include?('cricket') %> checked <% end %>>Cricket</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="sports[]" value="track"<% if @sportsParams && @sportsParams.include?('track') %> checked <% end %>>Track</label></div>
+						</div>
+						<div class="col-md-4">
+							<h4>Facilities</h4>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="playground"<% if @facilitiesParams && @facilitiesParams.include?('playground') %> checked <% end %>>Playground</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="picnicShelter"<% if @facilitiesParams && @facilitiesParams.include?('picnicShelter') %> checked <% end %>>Picnic Shelter</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="picnicArea"<% if @facilitiesParams && @facilitiesParams.include?('picnicArea') %> checked <% end %>>Picnic Area</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="grill"<% if @facilitiesParams && @facilitiesParams.include?('grill') %> checked <% end %>>Grill</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="excerciseEquipment"<% if @facilitiesParams && @facilitiesParams.include?('excerciseEquipment') %> checked <% end %>>Excercise Equipment</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="stage"<% if @facilitiesParams && @facilitiesParams.include?('stage') %> checked <% end %>>Stage</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="recycling"<% if @facilitiesParams && @facilitiesParams.include?('recycling') %> checked <% end %>>Recycling</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="compost"<% if @facilitiesParams && @facilitiesParams.include?('compost') %> checked <% end %>>Compost</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="restrooms"<% if @facilitiesParams && @facilitiesParams.include?('restrooms') %> checked <% end %>>Restrooms</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="bikeParking"<% if @facilitiesParams && @facilitiesParams.include?('bikeParking') %> checked <% end %>>Bike Parking</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="carParking"<% if @facilitiesParams && @facilitiesParams.include?('carParking') %> checked <% end %>>Car Parking</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="food"<% if @facilitiesParams && @facilitiesParams.include?('food') %> checked <% end %>>Food</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="boathouse"<% if @facilitiesParams && @facilitiesParams.include?('boathouse') %> checked <% end %>>Boathouse</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="skateBoard"<% if @facilitiesParams && @facilitiesParams.include?('skateBoard') %> checked <% end %>>Skate Board Park</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="iceSkating"<% if @facilitiesParams && @facilitiesParams.include?('iceSkating') %> checked <% end %>>Ice Skating Rink</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="facilities[]" value="tetherball"<% if @facilitiesParams && @facilitiesParams.include?('tetherball') %> checked <% end %>>Tetherball</label></div>
+						</div>
+						<div class="col-md-4">
+							<h4>Nature</h4>
+							<div class="checkbox"><label><input type="checkbox" name="natures[]" value="hiking"<% if @naturesParams && @naturesParams.include?('hiking') %> checked <% end %>>Hiking Trails</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="natures[]" value="biking"<% if @naturesParams && @naturesParams.include?('biking') %> checked <% end %>>Bike Trails</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="natures[]" value="droneField"<% if @naturesParams && @naturesParams.include?('droneField') %> checked <% end %>>Drone Field</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="natures[]" value="garden"<% if @naturesParams && @naturesParams.include?('garden') %> checked <% end %>>Garden</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="natures[]" value="greenhouse"<% if @naturesParams && @naturesParams.include?('greenhouse') %> checked <% end %>>Greenhouse</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="natures[]" value="camping"<% if @naturesParams && @naturesParams.include?('camping') %> checked <% end %>>Camping</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="natures[]" value="dogPark"<% if @naturesParams && @naturesParams.include?('dogPark') %> checked <% end %>>Dog Area</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="natures[]" value="lake"<% if @naturesParams && @naturesParams.include?('lake') %> checked <% end %>>Lake</label></div>
+							<div class="checkbox"><label><input type="checkbox" name="natures[]" value="fishing"<% if @naturesParams && @naturesParams.include?('fishing') %> checked <% end %>>Fishing</label></div>
+						</div>
 				  </div>
-				  <!-- <div class="panel-footer">Panel Footer</div> -->
-				</div>
+			  </div>
 			</div>
 		</div>
 		<% if @parks.count > 0 %>
@@ -147,11 +143,6 @@
 			</table>
 		</div>
 		<% end %> <!-- end if @parks.count > 0 -->
-		<!-- <ul class="nav nav-sidebar">
-			<% @parks.each do |park| %>
-			<li id="park<%= park.id %>"><a href="<%= park_path(park) %>"><%=park.parkName%></a></li>
-			<% end %>
-		</ul> -->
 	</div>
 
 </div><!-- /.container -->
