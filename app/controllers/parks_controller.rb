@@ -4,7 +4,7 @@ class ParksController < ApplicationController
 	# GET /parks
 	# GET /parks.json
 	def index
-		@parks = Park.withinDistanceFromLocation(params[:maxDistance],params[:location])
+		@parks = Park.findWithParams(params)
 
 		if params[:sports]
 				@sportsParams = Array.new

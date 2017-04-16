@@ -61,3 +61,7 @@ function addMarker(resultsMap, mapBounds, parkLat, parkLong, parkID, parkWebpage
 		 $("li#"+parkID).removeClass('highlightedPark');
 	});
 }
+
+function noResultsToDisplay() {
+	$('#map').html("<h1 style=\"text-align: center\"> Sorry No Results From Search</h1>");
+}
