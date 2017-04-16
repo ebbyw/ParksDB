@@ -1,0 +1,44 @@
+/* line 5, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+h3 {
+  margin-top: 0px;
+}
+
+/* line 9, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+h4 {
+  margin-top: 5px;
+}
+
+/* line 13, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+.lb-lg {
+  font-size: 25px;
+  margin-left: 25px;
+}
+
+/* line 18, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+/* line 23, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+/* line 28, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+.highlightedPark {
+  outline: #00FF00 dotted thick;
+}
+
+/* line 32, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+.scrollableTable {
+  height: 100%;
+  overflow: auto;
+}
+
+/* line 37, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/parks.scss */
+.popover {
+  max-width: 100%;
+  /* Max Width of the popover (depending on the container!) */
+}
