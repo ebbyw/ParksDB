@@ -2,8 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h3, h4{
+h3 {
 	margin-top: 0px;
+}
+
+h4 {
+	margin-top: 5px;
+}
+
+.lb-lg {
+  font-size: 25px;
+  margin-left: 25px;
 }
 
 .starter-template {
