@@ -26,5 +26,3 @@ test:
 production:
   <<: *default
   database: parks
-  username: <%= ENV["PARKSDB_PROD_USERNAME"] %>
-  password: <%= ENV["PARKSDB_PROD_PASSWORD"] %>
