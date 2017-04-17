@@ -5,6 +5,7 @@ class Park < ApplicationRecord
 	                   :default_formula => :sphere,
 	                   :lat_column_name => :lattitude,
 	                   :lng_column_name => :longitude
+
 	has_one :nature
 	has_one :facility
 	has_one :park_office

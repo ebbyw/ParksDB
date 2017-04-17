@@ -45,7 +45,10 @@ class ParksController < ApplicationController
 	# POST /parks
 	# POST /parks.json
 	def create
-		@park = Park.new(park_params)
+		@park = Park.new(park_params[:park])
+		coordinate = GoogleGeocoder.geocode(park_params[:parkaddress])
+		@park.lattitude = coordinate.lat
+		@park.longitude = coordinate.lng
 		@park.build_park_office(params[:park_office])
 		@park.build_sport(params[:sport])
 		@park.build_facility(params[:facility])
@@ -81,7 +84,7 @@ class ParksController < ApplicationController
 	def destroy
 		@park.destroy
 		respond_to do |format|
-			format.html { redirect_to parks_url, notice: 'Park was successfully destroyed.' }
+			format.html { redirect_to admin_parks, notice: 'Park was successfully destroyed.' }
 			format.json { head :no_content }
 		end
 	end
@@ -94,6 +97,10 @@ class ParksController < ApplicationController
 
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def park_params
-			params.require(:park).permit(:parkName, :parkWebsite, :parkHours, :parkAddress)
+			params.require(:park).permit(:parkname, :parkwebsite, :parkhours, :parkaddress,
+				park_office: [:officeaddress, :officehours, :officeemail, :officephone, :parkhasentrancefee], 
+				sport: [:baseball, :basketball, :lacrosse, :tennis, :soccer, :volleyball, :football, :frisbee, :golf, :cricket, :track], 
+				nature: [:hiking, :biking, :dronefield, :garden, :greenhouse, :camping, :dogpark, :lake, :fishing], 
+				facility: [:playground, :picnicshelter, :picnicarea, :grill, :excerciseequipment, :stage, :recycling, :compost, :restroom, :bikeparking, :parking, :food, :boathouse, :skateboarding, :iceskating, :tetherball])
 		end
 end
