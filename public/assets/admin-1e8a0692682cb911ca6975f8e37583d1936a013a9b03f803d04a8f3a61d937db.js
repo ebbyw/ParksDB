@@ -1,0 +1,1 @@
+function setPageHeaderTitle(e){document.getElementById("pageHeaderTitle").innerHTML=e}function setPageHeaderSubtitle(e){document.getElementById("pageHeaderSubtitle").innerHTML=e}function setSelectedNavPage(e){document.getElementById(e).className+="active"}

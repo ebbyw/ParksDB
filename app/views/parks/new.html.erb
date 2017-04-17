@@ -1,5 +1,14 @@
-<h1>New Park</h1>
+<%= stylesheet_link_tag "admin", media:"all", "data-turbolinks-track"=> true%>
+<%= javascript_include_tag "admin", "data-turbolinks-track"=> true%>
+
+<script>setPageHeaderTitle("Parks");</script>
+<script>setPageHeaderSubtitle("Create a New Park");</script>
+<script>setSelectedNavPage("addParkNavItem");</script>
+
+<div class="well">
 
 <%= render 'form', park: @park %>
 
-<%= link_to 'Back', parks_path %>
+<%= link_to 'Back', "admin/parks" %>
+
+</div>

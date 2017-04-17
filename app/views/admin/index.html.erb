@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag "admin", media:"all", "data-turbolinks-track"=> true%>
+<%= javascript_include_tag "admin", "data-turbolinks-track"=> true%>
+
+<script>setPageHeaderTitle("Dashboard");</script>
+<script>setPageHeaderSubtitle("Home");</script>
+<script>setSelectedNavPage("dashboardHomeNavItem");</script>
+
+<div class="row">
+	<div class="col-md-3 col-sm-6 col-xs-12">
+		<div class="info-box">
+			<span class="info-box-icon bg-green"><i class="ion ion-leaf"></i></span>
+			<div class="info-box-content">
+				<span class="info-box-text"># of Parks</span>
+				<span class="info-box-number"><%= Park.count %></span>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,24 +1,71 @@
+<%= stylesheet_link_tag "admin", media:"all", "data-turbolinks-track"=> true%>
+<%= javascript_include_tag "admin", "data-turbolinks-track"=> true%>
+
+<script>setPageHeaderTitle("Full Park Record View ");</script>
+<script>setPageHeaderSubtitle("<%=@park.parkname%>");</script>
+
 <p id="notice"><%= notice %></p>
+<div class="container">
+	<div class="row">
+		<div class="well col-4">
+			<p><strong>Parkname: </strong><%= @park.parkname %></p>
+			<p><strong>Parkwebsite: </strong><%= @park.parkwebsite %></p>
+			<p><strong>Parkhours: </strong><%= @park.parkhours %></p>
+			<p><strong>Parkaddress: </strong><%= @park.parkaddress %></p>
+		</div>
 
-<p>
-  <strong>Parkname:</strong>
-  <%= @park.parkName %>
-</p>
+		<div class="well col-4">
+			<p><strong>Officeaddress: </strong><%= @park.park_office.officeaddress %></p>
+			<p><strong>Officehours: </strong><%= @park.park_office.officehours %></p>
+			<p><strong>Officeemail: </strong><%= @park.park_office.officeemail %></p>
+			<p><strong>Officephone: </strong><%= @park.park_office.officephone %></p>
+			<p><strong>Parkhasentrancefee: </strong><%= @park.park_office.parkhasentrancefee %></p>
+		</div>
+	</div>
+	<div class="col-4">
+		<p><strong>Hiking: </strong><%= @park.nature.hiking %></p>
+		<p><strong>Biking: </strong><%= @park.nature.biking %></p>
+		<p><strong>Dronefield: </strong><%= @park.nature.dronefield %></p>
+		<p><strong>Garden: </strong><%= @park.nature.garden %></p>
+		<p><strong>Greenhouse: </strong><%= @park.nature.greenhouse %></p>
+		<p><strong>Camping: </strong><%= @park.nature.camping %></p>
+		<p><strong>Dogpark: </strong><%= @park.nature.dogpark %></p>
+		<p><strong>Lake: </strong><%= @park.nature.lake %></p>
+		<p><strong>Fishing: </strong><%= @park.nature.fishing %></p>
+	</div>
+	<div class="col-4">
+		<p><strong>Baseball: </strong><%= @park.sport.baseball %></p>
+		<p><strong>Basketball: </strong><%= @park.sport.basketball %></p>
+		<p><strong>Lacrosse: </strong><%= @park.sport.lacrosse %></p>
+		<p><strong>Tennis: </strong><%= @park.sport.tennis %></p>
+		<p><strong>Soccer: </strong><%= @park.sport.soccer %></p>
+		<p><strong>Volleyball: </strong><%= @park.sport.volleyball %></p>
+		<p><strong>Football: </strong><%= @park.sport.football %></p>
+		<p><strong>Frisbee: </strong><%= @park.sport.frisbee %></p>
+		<p><strong>Golf: </strong><%= @park.sport.golf %></p>
+		<p><strong>Cricket: </strong><%= @park.sport.cricket %></p>
+		<p><strong>Track: </strong><%= @park.sport.track %></p>
+	</div>
+	<div class="col-4">
+		<p><strong>Playground: </strong><%= @park.facility.playground %></p>
+		<p><strong>Picnicshelter: </strong><%= @park.facility.picnicshelter %></p>
+		<p><strong>Picnicarea: </strong><%= @park.facility.picnicarea %></p>
+		<p><strong>Grill: </strong><%= @park.facility.grill %></p>
+		<p><strong>Excerciseequipment: </strong><%= @park.facility.excerciseequipment %></p>
+		<p><strong>Stage: </strong><%= @park.facility.stage %></p>
+		<p><strong>Recycling: </strong><%= @park.facility.recycling %></p>
+		<p><strong>Compost: </strong><%= @park.facility.compost %></p>
+		<p><strong>Restroom: </strong><%= @park.facility.restroom %></p>
+		<p><strong>Bikeparking: </strong><%= @park.facility.bikeparking %></p>
+		<p><strong>Parking: </strong><%= @park.facility.parking %></p>
+		<p><strong>Food: </strong><%= @park.facility.food %></p>
+		<p><strong>Boathouse: </strong><%= @park.facility.boathouse %></p>
+		<p><strong>Skateboarding: </strong><%= @park.facility.skateboarding %></p>
+		<p><strong>Iceskating: </strong><%= @park.facility.iceskating %></p>
+		<p><strong>Tetherball: </strong><%= @park.facility.tetherball %></p>
+	</div>
 
-<p>
-  <strong>Parkwebsite:</strong>
-  <%= @park.parkWebsite %>
-</p>
+	<%= link_to 'Edit', edit_park_path(@park) %> |
+	<%= link_to 'Back', parks_path %>
 
-<p>
-  <strong>Parkhours:</strong>
-  <%= @park.parkHours %>
-</p>
-
-<p>
-  <strong>Parkaddress:</strong>
-  <%= @park.parkAddress %>
-</p>
-
-<%= link_to 'Edit', edit_park_path(@park) %> |
-<%= link_to 'Back', parks_path %>
+</div>

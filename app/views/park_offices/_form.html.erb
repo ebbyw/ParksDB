@@ -12,29 +12,35 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :officeAddress %>
-    <%= f.text_field :officeAddress %>
+    <%= f.label :officeaddress %>
+    <%= f.text_field :officeaddress %>
   </div>
 
   <div class="field">
-    <%= f.label :officeHours %>
-    <%= f.text_field :officeHours %>
+    <%= f.label :officehours %>
+    <%= f.text_field :officehours %>
   </div>
 
   <div class="field">
-    <%= f.label :officeEmail %>
-    <%= f.text_field :officeEmail %>
+    <%= f.label :officeemail %>
+    <%= f.text_field :officeemail %>
   </div>
 
   <div class="field">
-    <%= f.label :officePhone %>
-    <%= f.text_field :officePhone %>
+    <%= f.label :officephone %>
+    <%= f.text_field :officephone %>
   </div>
 
   <div class="field">
-    <%= f.label :parkHasEntranceFee %>
-    <%= f.check_box :parkHasEntranceFee %>
+    <%= f.label :parkhasentrancefee %>
+    <%= f.check_box :parkhasentrancefee %>
   </div>
+
+  <% if park_office.new_record? %>
+    <div class="field">
+      <%= f.hidden_field :park_id, :value => params[:park_id] %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

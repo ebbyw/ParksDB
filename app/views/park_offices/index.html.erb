@@ -17,11 +17,11 @@
   <tbody>
     <% @park_offices.each do |park_office| %>
       <tr>
-        <td><%= park_office.officeAddress %></td>
-        <td><%= park_office.officeHours %></td>
-        <td><%= park_office.officeEmail %></td>
-        <td><%= park_office.officePhone %></td>
-        <td><%= park_office.parkHasEntranceFee %></td>
+        <td><%= park_office.officeaddress %></td>
+        <td><%= park_office.officehours %></td>
+        <td><%= park_office.officeemail %></td>
+        <td><%= park_office.officephone %></td>
+        <td><%= park_office.parkhasentrancefee %></td>
         <td><%= link_to 'Show', park_office %></td>
         <td><%= link_to 'Edit', edit_park_office_path(park_office) %></td>
         <td><%= link_to 'Destroy', park_office, method: :delete, data: { confirm: 'Are you sure?' } %></td>

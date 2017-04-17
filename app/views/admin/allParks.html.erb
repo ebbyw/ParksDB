@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag "admin", media:"all", "data-turbolinks-track"=> true%>
+<%= javascript_include_tag "admin", "data-turbolinks-track"=> true%>
+
+<script>setPageHeaderTitle("Parks");</script>
+<script>setPageHeaderSubtitle("All Parks");</script>
+<script>setSelectedNavPage("allParksNavItem");</script>
+
+<div class="well">
+<%= link_to 'Create a New Park', new_park_path, class: "btn btn-success"%>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Park Name</th>
+      <th>Website</th>
+      <th>Hours</th>
+      <th>Address</th>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parks.each do |park| %>
+      <tr>
+        <td><%= park.parkname %></td>
+        <td><a href="<%= park.parkwebsite %>">Link</a></td>
+        <td><%= park.parkhours %></td>
+        <td><%= park.parkaddress %></td>
+        <td><%= link_to 'Full View', park, class: "btn btn-sm btn-info"%></td>
+        <td><%= link_to 'Edit', edit_park_path(park), class: "btn btn-sm btn-warning" %></td>
+        <td><%= link_to 'Destroy', park, class: "btn btn-sm btn-danger",method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

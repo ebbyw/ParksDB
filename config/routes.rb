@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  resources :facilities
-  resources :natures
-  resources :sports
-  resources :park_offices
+  devise_for :users
   resources :parks
-  get 'welcome/index'
+  get 'admin', to: 'admin#index'
+  get 'admin/parks', to: 'admin#allParks'
+  get 'welcome', to: 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
-  root 'parks#index'
+  root 'welcome#index'
 end

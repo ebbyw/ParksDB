@@ -1,26 +1,16 @@
-// Place all the styles related to the Welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 /* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
-
+/* line 10, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
 }
 
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  background-color: transparent;
-}
-
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
-
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
+/* line 20, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .navbar-wrapper {
   position: absolute;
   top: 0;
@@ -30,37 +20,46 @@ body {
 }
 
 /* Flip around the padding for proper display in narrow viewports */
+/* line 29, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .navbar-wrapper > .container {
   padding-right: 0;
   padding-left: 0;
 }
+
+/* line 33, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .navbar-wrapper .navbar {
   padding-right: 15px;
   padding-left: 15px;
 }
+
+/* line 37, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .navbar-wrapper .navbar .container {
   width: auto;
 }
 
-
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
-
 /* Carousel base class */
+/* line 46, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .carousel {
   height: 500px;
   margin-bottom: 60px;
 }
+
 /* Since positioning the image, we need to help out the caption */
+/* line 51, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .carousel-caption {
   z-index: 10;
 }
 
 /* Declare heights because of positioning of img element */
+/* line 56, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .carousel .item {
   height: 500px;
   background-color: #777;
 }
+
+/* line 60, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .carousel-inner > .item > img {
   position: absolute;
   top: 0;
@@ -69,74 +68,84 @@ body {
   height: 500px;
 }
 
-
 /* MARKETING CONTENT
 -------------------------------------------------- */
-
 /* Center align the text within the three columns below the carousel */
+/* line 73, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .marketing .col-lg-4 {
   margin-bottom: 20px;
   text-align: center;
 }
+
+/* line 77, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .marketing h2 {
   font-weight: normal;
 }
+
+/* line 80, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .marketing .col-lg-4 p {
   margin-right: 10px;
   margin-left: 10px;
 }
 
-
 /* Featurettes
 ------------------------- */
-
+/* line 89, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .featurette-divider {
-  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+  margin: 80px 0;
+  /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
+/* line 94, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
 .featurette-heading {
   font-weight: 300;
   line-height: 1;
   letter-spacing: -1px;
 }
 
-
 /* RESPONSIVE CSS
 -------------------------------------------------- */
-
 @media (min-width: 768px) {
   /* Navbar positioning foo */
+  /* line 106, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
   .navbar-wrapper {
     margin-top: 20px;
   }
+
+  /* line 109, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
   .navbar-wrapper .container {
     padding-right: 15px;
     padding-left: 15px;
   }
+
+  /* line 113, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
   .navbar-wrapper .navbar {
     padding-right: 0;
     padding-left: 0;
   }
 
   /* The navbar becomes detached from the top, so we round the corners */
+  /* line 119, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
   .navbar-wrapper .navbar {
     border-radius: 4px;
   }
 
   /* Bump up size of carousel content */
+  /* line 124, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
   .carousel-caption p {
     margin-bottom: 20px;
     font-size: 21px;
     line-height: 1.4;
   }
 
+  /* line 130, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
   .featurette-heading {
     font-size: 50px;
   }
 }
-
 @media (min-width: 992px) {
+  /* line 136, /Users/ebbywahman/Development/ParksDB/app/assets/stylesheets/welcome.scss */
   .featurette-heading {
     margin-top: 120px;
   }

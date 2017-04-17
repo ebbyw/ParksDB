@@ -29,11 +29,13 @@ class ParksController < ApplicationController
 	# GET /parks/1
 	# GET /parks/1.json
 	def show
+		render layout: "admin_lte_2"
 	end
 
 	# GET /parks/new
 	def new
 		@park = Park.new
+		render layout: "admin_lte_2"
 	end
 
 	# GET /parks/1/edit
@@ -44,6 +46,10 @@ class ParksController < ApplicationController
 	# POST /parks.json
 	def create
 		@park = Park.new(park_params)
+		@park.build_park_office(params[:park_office])
+		@park.build_sport(params[:sport])
+		@park.build_facility(params[:facility])
+		@park.build_nature(params[:nature])
 
 		respond_to do |format|
 			if @park.save
