@@ -29,13 +29,17 @@ class ParksController < ApplicationController
 	# GET /parks/1
 	# GET /parks/1.json
 	def show
-		render layout: "admin_lte_2"
+		render layout: "admin_lte_2" #stays at the end of this method
 	end
 
 	# GET /parks/new
 	def new
 		@park = Park.new
-		render layout: "admin_lte_2"
+		@park.build_park_office
+		@park.build_sport
+		@park.build_facility
+		@park.build_nature
+		render layout: "admin_lte_2" #stays at the end of this method
 	end
 
 	# GET /parks/1/edit
@@ -45,14 +49,10 @@ class ParksController < ApplicationController
 	# POST /parks
 	# POST /parks.json
 	def create
-		@park = Park.new(park_params[:park])
+		@park = Park.new(park_params)
 		coordinate = GoogleGeocoder.geocode(park_params[:parkaddress])
 		@park.lattitude = coordinate.lat
 		@park.longitude = coordinate.lng
-		@park.build_park_office(params[:park_office])
-		@park.build_sport(params[:sport])
-		@park.build_facility(params[:facility])
-		@park.build_nature(params[:nature])
 
 		respond_to do |format|
 			if @park.save
@@ -98,9 +98,9 @@ class ParksController < ApplicationController
 		# Never trust parameters from the scary internet, only allow the white list through.
 		def park_params
 			params.require(:park).permit(:parkname, :parkwebsite, :parkhours, :parkaddress,
-				park_office: [:officeaddress, :officehours, :officeemail, :officephone, :parkhasentrancefee], 
-				sport: [:baseball, :basketball, :lacrosse, :tennis, :soccer, :volleyball, :football, :frisbee, :golf, :cricket, :track], 
-				nature: [:hiking, :biking, :dronefield, :garden, :greenhouse, :camping, :dogpark, :lake, :fishing], 
-				facility: [:playground, :picnicshelter, :picnicarea, :grill, :excerciseequipment, :stage, :recycling, :compost, :restroom, :bikeparking, :parking, :food, :boathouse, :skateboarding, :iceskating, :tetherball])
+				park_office_attributes: [:officeaddress, :officehours, :officeemail, :officephone, :parkhasentrancefee], 
+				sport_attributes: [:baseball, :basketball, :lacrosse, :tennis, :soccer, :volleyball, :football, :frisbee, :golf, :cricket, :track], 
+				nature_attributes: [:hiking, :biking, :dronefield, :garden, :greenhouse, :camping, :dogpark, :lake, :fishing], 
+				facility_attributes: [:playground, :picnicshelter, :picnicarea, :grill, :excerciseequipment, :stage, :recycling, :compost, :restroom, :bikeparking, :parking, :food, :boathouse, :skateboarding, :iceskating, :tetherball])
 		end
 end

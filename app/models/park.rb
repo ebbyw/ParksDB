@@ -11,6 +11,8 @@ class Park < ApplicationRecord
 	has_one :park_office
 	has_one :sport
 
+	accepts_nested_attributes_for :nature, :facility, :park_office, :sport
+
 	def self.findWithParams(params)
 		@location = params[:location]
 		if(!GoogleGeocoder.geocode(@location).success)
