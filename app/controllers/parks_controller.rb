@@ -84,7 +84,7 @@ class ParksController < ApplicationController
 	def destroy
 		@park.destroy
 		respond_to do |format|
-			format.html { redirect_to admin_parks, notice: 'Park was successfully destroyed.' }
+			format.html { redirect_to admin_parks_path, notice: 'Park was successfully destroyed.' }
 			format.json { head :no_content }
 		end
 	end
