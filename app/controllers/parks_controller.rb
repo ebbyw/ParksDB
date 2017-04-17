@@ -1,5 +1,5 @@
 class ParksController < ApplicationController
-	before_action :set_park, only: [:show, :edit, :update, :destroy]
+	before_action :set_park, only: [:show, :show_admin, :edit, :update, :destroy]
 
 	# GET /parks
 	# GET /parks.json
@@ -26,10 +26,15 @@ class ParksController < ApplicationController
 		end
 	end
 
+	# GET admin/parks/1
+	# GET admin/parks/1.json
+	def show_admin
+		render layout: "admin_lte_2" #stays at the end of this method
+	end
+
 	# GET /parks/1
 	# GET /parks/1.json
 	def show
-		render layout: "admin_lte_2" #stays at the end of this method
 	end
 
 	# GET /parks/new
