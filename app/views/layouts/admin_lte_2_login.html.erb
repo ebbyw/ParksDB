@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <title>Parks DB | Log in</title>
   <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,6 +15,9 @@
 </head>
 <body class="login-page">
 <div class="container">
+<br>
+<br>
+<br>
 <div class="col-md-4 col-md-offset-4">
 <div class="well">
 <div class="login-box">
@@ -39,14 +40,11 @@
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Remember Me
-            </label>
+            <%= link_to 'Sign Up', new_user_registration_path %>
           </div>
         </div><!-- /.col -->
         <div class="col-xs-4">
           <%= f.submit 'Log in', class: 'btn btn-primary btn-block btn-flat' %>
-
         </div><!-- /.col -->
       </div>
 
@@ -56,7 +54,5 @@
 </div>
 </div>
 </div>
-
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

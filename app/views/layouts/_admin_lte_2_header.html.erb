@@ -19,11 +19,11 @@
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-            <span class="hidden-xs">someone@email.com</span>
+            <span class="hidden-xs"><%= current_user.email %></span>
           </a>
         </li>
         <li>
-          <a href="#" class="btn btn-error btn-flat">Sign out</a>
+          <%= link_to 'Sign Out', new_user_registration_path , class: "btn btn-error btn-flat" %>
         </li>
       </ul>
     </div>
