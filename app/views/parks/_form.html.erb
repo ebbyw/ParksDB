@@ -11,6 +11,10 @@
     </div>
   <% end %>
 <div class="box">
+<div class="box-header with-border">
+  <h3 class="box-title">Basic Information</h3>
+</div>
+<div class="box-body">
 <div class="row">
 <div class="col-md-6">
   <div class="form-group">
@@ -43,17 +47,17 @@
 
     <div class="form-group">
       <%= parkOffice_form.label :officehours %>
-      <%= parkOffice_form.text_field :officehours, class: 'form-control' %>
+      <%= parkOffice_form.text_field :officehours, class: 'form-control', placeholder:"hh:mmAM - hh:mmPM", data: {mask: '99:99aa - 99:99aa'} %>
     </div>
 
     <div class="form-group">
       <%= parkOffice_form.label :officeemail %>
-      <%= parkOffice_form.text_field :officeemail, class: 'form-control' %>
+      <%= parkOffice_form.email_field :officeemail, class: 'form-control', placeholder:"someone@example.com" %>
     </div>
 
     <div class="form-group">
       <%= parkOffice_form.label :officephone%>
-      <%= parkOffice_form.text_field :officephone, class: 'form-control' %>
+      <%= parkOffice_form.text_field :officephone, class: 'form-control', placeholder:"(999) 999-9999" ,data: {mask: '(999) 999-9999'} %>
     </div>
 
     <div class="form-group">
@@ -64,8 +68,14 @@
 </div>
 </div>
 </div>
+</div>
+
+<div class="box">
+<div class="box-header with-border">
+  <h3 class="box-title">Sports</h3>
+</div>
+<div class="box-body">
 <div class="row">
-  <h4>Sports</h4>
   <%= f.fields_for :sport do |sport_form| %>
 <div class="col-md-3">
     <div class="form-group">
@@ -127,9 +137,16 @@
 </div>
   <% end %>
 </div>
+</div>
+</div>
 
+
+<div class="box">
+<div class="box-header with-border">
+  <h3 class="box-title">Nature</h3>
+</div>
+<div class="box-body">
 <div class="row">
-  <h4>Nature</h4>
   <%= f.fields_for :nature do |nature_form| %>
 <div class="col-md-3">
   <div class="form-group">
@@ -175,9 +192,15 @@
 </div>
   <% end %>
 </div>
+</div>
+</div>
 
+<div class="box">
+<div class="box-header with-border">
+  <h3 class="box-title">Facilities</h3>
+</div>
+<div class="box-body">
 <div class="row">
-  <h4>Facilities</h4>
   <%= f.fields_for :facility do |facility_form| %>
   <div class="col-md-3">
   <div class="form-group">
@@ -265,8 +288,10 @@
 </div>
   <% end %>
 </div>
+</div>
+</div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Create Park Entry' , class: "btn btn-success"%>
   </div>
 <% end %>

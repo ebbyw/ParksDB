@@ -1,8 +1,4 @@
-<%= stylesheet_link_tag "admin", media:"all", "data-turbolinks-track"=> true%>
-<%= javascript_include_tag "admin", "data-turbolinks-track"=> true%>
-
-<script>setPageHeaderTitle("Full Park Record View ");</script>
-<script>setPageHeaderSubtitle("<%=@park.parkname%>");</script>
+<%= render partial: 'layouts/parksdb_navbar' %>
 
 <p id="notice"><%= notice %></p>
 <div class="container">

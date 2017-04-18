@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'sprockets-rails'
 gem 'less-rails' #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem 'twitter-bootstrap-rails', :git => 'https://github.com/seyhunak/twitter-bootstrap-rails'
+gem 'jasny-bootstrap-rails' #JS for bootstrap
 gem 'adminlte2-rails' #Bootstrap-based Dashboard theme
 gem 'devise'
 

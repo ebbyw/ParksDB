@@ -55,4 +55,21 @@ en:
         dogpark: Dog Area
         lake: Lake
         fishing: Fishing
+      facility:
+        playground: Playground
+        picnicshelter: Covered Picnic Seating
+        picnicarea: Uncovered Picnic Seating
+        grill: Outdoor Grill
+        excerciseequipment: Excercise Station
+        stage: Stage
+        recycling: Recycling Bins
+        compost: Compost Bins
+        restroom: Restrooms
+        bikeparking: Bike Racks
+        parking: Parking
+        food: Concession Stands
+        boathouse: BoatHouse/Marina
+        skateboarding: Skate Park Ramps
+        iceskating: Ice Skating Rink
+        tetherball: Tetherball
 
