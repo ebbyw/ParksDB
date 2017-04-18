@@ -26,7 +26,7 @@
         <td><a href="<%= park.parkwebsite %>">Link</a></td>
         <td><%= park.parkhours %></td>
         <td><%= park.parkaddress %></td>
-        <td><%= link_to 'Full View', park, class: "btn btn-sm btn-info"%></td>
+        <td><%= link_to 'Full View', admin_park_path(park), class: "btn btn-sm btn-info"%></td>
         <td><%= link_to 'Edit', edit_park_path(park), class: "btn btn-sm btn-warning" %></td>
         <td><%= link_to 'Destroy', park, class: "btn btn-sm btn-danger",method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

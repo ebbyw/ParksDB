@@ -1,6 +1,10 @@
-<h1>Editing Park</h1>
+<%= stylesheet_link_tag "admin", media:"all", "data-turbolinks-track"=> true%>
+<%= javascript_include_tag "admin", "data-turbolinks-track"=> true%>
 
-<%= render 'form', park: @park %>
+<script>setPageHeaderTitle("Parks");</script>
+<script>setPageHeaderSubtitle("Editing Park");</script>
 
-<%= link_to 'Show', @park %> |
-<%= link_to 'Back', parks_path %>
+<%= render partial: 'form', locals: {park: @park} %>
+
+<%= link_to 'Show', admin_park_path(@park) %> |
+<%= link_to 'Back', admin_parks_path %>

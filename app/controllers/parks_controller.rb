@@ -49,6 +49,7 @@ class ParksController < ApplicationController
 
 	# GET /parks/1/edit
 	def edit
+		render layout: "admin_lte_2" #stays at the end of this method
 	end
 
 	# POST /parks
@@ -73,6 +74,10 @@ class ParksController < ApplicationController
 	# PATCH/PUT /parks/1
 	# PATCH/PUT /parks/1.json
 	def update
+		coordinate = GoogleGeocoder.geocode(park_params[:parkaddress])
+		@park.lattitude = coordinate.lat
+		@park.longitude = coordinate.lng
+
 		respond_to do |format|
 			if @park.update(park_params)
 				format.html { redirect_to @park, notice: 'Park was successfully updated.' }
