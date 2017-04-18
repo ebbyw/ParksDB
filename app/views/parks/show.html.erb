@@ -2,66 +2,58 @@
 
 <p id="notice"><%= notice %></p>
 <div class="container">
+	<%= link_to 'Back', :back, class: "btn btn-error" %>
+	<div class="well">
+	<h1><%= @park.parkname %></h1>
+		<div class="row">
+		<div class="col-md-6">
+			<p><a href="<%= @park.parkwebsite %>">Website</a></p>
+			<p><strong><%= t 'helpers.label.park.parkhours' %>: </strong><%= @park.parkhours %></p>
+			<p><strong><%= t 'helpers.label.park.parkaddress'%>: </strong><%= @park.parkaddress %></p>
+			<% if @park.park_office.parkhasentrancefee %>
+			<strong><%= t 'helpers.label.park.parkhasentrancefee'%></strong>
+			<% end %>
+		</div>
+
+		<div class="col-md-6">
+			<p><strong><%= t 'helpers.label.park_office.officeaddress'%>: </strong><%= @park.park_office.officeaddress %></p>
+			<p><strong><%= t 'helpers.label.park_office.officehours'%>: </strong><%= @park.park_office.officehours %></p>
+			<p><strong><%= t 'helpers.label.park_office.officeemail'%>: </strong><%= @park.park_office.officeemail %></p>
+			<p><strong><%= t 'helpers.label.park_office.officephone'%>: </strong><%= @park.park_office.officephone %></p>
+			
+		</div>
+		</div>
 	<div class="row">
-		<div class="well col-4">
-			<p><strong>Parkname: </strong><%= @park.parkname %></p>
-			<p><strong>Parkwebsite: </strong><%= @park.parkwebsite %></p>
-			<p><strong>Parkhours: </strong><%= @park.parkhours %></p>
-			<p><strong>Parkaddress: </strong><%= @park.parkaddress %></p>
-		</div>
+	<div class="col-md-4">
+	<h3>Amenities</h3>
+		<% @sports = [] %>
+		<% @park.sport.attributes.except("id", "created_at", "updated_at","park_id").each_pair do |name, value| %>
+			<% if value > 0%>
+			<% @sports.push(t("helpers.label.sport."+name.to_s)) %>
+			<% end %>
+		<% end %>
+		<% if !@sports.empty? %>
+			<p><strong>Sports: </strong><%= @sports.join(", ") %> </p>
+		<% end %>
 
-		<div class="well col-4">
-			<p><strong>Officeaddress: </strong><%= @park.park_office.officeaddress %></p>
-			<p><strong>Officehours: </strong><%= @park.park_office.officehours %></p>
-			<p><strong>Officeemail: </strong><%= @park.park_office.officeemail %></p>
-			<p><strong>Officephone: </strong><%= @park.park_office.officephone %></p>
-			<p><strong>Parkhasentrancefee: </strong><%= @park.park_office.parkhasentrancefee %></p>
-		</div>
-	</div>
-	<div class="col-4">
-		<p><strong>Hiking: </strong><%= @park.nature.hiking %></p>
-		<p><strong>Biking: </strong><%= @park.nature.biking %></p>
-		<p><strong>Dronefield: </strong><%= @park.nature.dronefield %></p>
-		<p><strong>Garden: </strong><%= @park.nature.garden %></p>
-		<p><strong>Greenhouse: </strong><%= @park.nature.greenhouse %></p>
-		<p><strong>Camping: </strong><%= @park.nature.camping %></p>
-		<p><strong>Dogpark: </strong><%= @park.nature.dogpark %></p>
-		<p><strong>Lake: </strong><%= @park.nature.lake %></p>
-		<p><strong>Fishing: </strong><%= @park.nature.fishing %></p>
-	</div>
-	<div class="col-4">
-		<p><strong>Baseball: </strong><%= @park.sport.baseball %></p>
-		<p><strong>Basketball: </strong><%= @park.sport.basketball %></p>
-		<p><strong>Lacrosse: </strong><%= @park.sport.lacrosse %></p>
-		<p><strong>Tennis: </strong><%= @park.sport.tennis %></p>
-		<p><strong>Soccer: </strong><%= @park.sport.soccer %></p>
-		<p><strong>Volleyball: </strong><%= @park.sport.volleyball %></p>
-		<p><strong>Football: </strong><%= @park.sport.football %></p>
-		<p><strong>Frisbee: </strong><%= @park.sport.frisbee %></p>
-		<p><strong>Golf: </strong><%= @park.sport.golf %></p>
-		<p><strong>Cricket: </strong><%= @park.sport.cricket %></p>
-		<p><strong>Track: </strong><%= @park.sport.track %></p>
-	</div>
-	<div class="col-4">
-		<p><strong>Playground: </strong><%= @park.facility.playground %></p>
-		<p><strong>Picnicshelter: </strong><%= @park.facility.picnicshelter %></p>
-		<p><strong>Picnicarea: </strong><%= @park.facility.picnicarea %></p>
-		<p><strong>Grill: </strong><%= @park.facility.grill %></p>
-		<p><strong>Excerciseequipment: </strong><%= @park.facility.excerciseequipment %></p>
-		<p><strong>Stage: </strong><%= @park.facility.stage %></p>
-		<p><strong>Recycling: </strong><%= @park.facility.recycling %></p>
-		<p><strong>Compost: </strong><%= @park.facility.compost %></p>
-		<p><strong>Restroom: </strong><%= @park.facility.restroom %></p>
-		<p><strong>Bikeparking: </strong><%= @park.facility.bikeparking %></p>
-		<p><strong>Parking: </strong><%= @park.facility.parking %></p>
-		<p><strong>Food: </strong><%= @park.facility.food %></p>
-		<p><strong>Boathouse: </strong><%= @park.facility.boathouse %></p>
-		<p><strong>Skateboarding: </strong><%= @park.facility.skateboarding %></p>
-		<p><strong>Iceskating: </strong><%= @park.facility.iceskating %></p>
-		<p><strong>Tetherball: </strong><%= @park.facility.tetherball %></p>
-	</div>
+		<% @natures = [] %>
+		<% @park.nature.attributes.except("id", "created_at", "updated_at","park_id").each_pair do |name, value| %>
+			<% if value > 0%>
+			<% @natures.push(t("helpers.label.nature."+name.to_s)) %>
+			<% end %>
+		<% end %>
+		<% if !@natures.empty? %>
+			<p><strong>Nature: </strong><%= @natures.join(", ") %> </p>
+		<% end %>
 
-	<%= link_to 'Edit', edit_park_path(@park) %> |
-	<%= link_to 'Back', parks_path %>
-
+		<% @facilities = [] %>
+		<% @park.facility.attributes.except("id", "created_at", "updated_at","park_id").each_pair do |name, value| %>
+			<% if value > 0%>
+			<% @facilities.push(t("helpers.label.facility."+name.to_s)) %>
+			<% end %>
+		<% end %>
+		<% if !@facilities.empty? %>
+			<p><strong>Facilities: </strong><%= @facilities.join(", ") %> </p>
+		<% end %>
+	</div>
 </div>
