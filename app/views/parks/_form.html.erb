@@ -10,247 +10,259 @@
       </ul>
     </div>
   <% end %>
-
-<div class="box col-6">
-  <div class="field">
+<div class="box">
+<div class="row">
+<div class="col-md-6">
+  <div class="form-group">
     <%= f.label :parkname %>
-    <%= f.text_field :parkname %>
+    <%= f.text_field :parkname, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :parkwebsite %>
-    <%= f.text_field :parkwebsite %>
+    <%= f.text_field :parkwebsite, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :parkhours %>
-    <%= f.text_field :parkhours %>
+    <%= f.text_field :parkhours, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :parkaddress %>
-    <%= f.text_field :parkaddress %>
+    <%= f.text_field :parkaddress, class: 'form-control' %>
   </div>
 </div>
 
-<div class="box col-6">
+<div class="col-md-6">
   <%= f.fields_for :park_office do |parkOffice_form| %>
-    <div class="field">
+    <div class="form-group">
       <%= parkOffice_form.label :officeaddress %>
-      <%= parkOffice_form.text_field :officeaddress %>
+      <%= parkOffice_form.text_field :officeaddress, class: 'form-control' %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= parkOffice_form.label :officehours %>
-      <%= parkOffice_form.text_field :officehours %>
+      <%= parkOffice_form.text_field :officehours, class: 'form-control' %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= parkOffice_form.label :officeemail %>
-      <%= parkOffice_form.text_field :officeemail %>
+      <%= parkOffice_form.text_field :officeemail, class: 'form-control' %>
     </div>
 
-    <div class="field">
-      <%= parkOffice_form.label :officephone %>
-      <%= parkOffice_form.text_field :officephone %>
+    <div class="form-group">
+      <%= parkOffice_form.label :officephone%>
+      <%= parkOffice_form.text_field :officephone, class: 'form-control' %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= parkOffice_form.label :parkhasentrancefee %>
       <%= parkOffice_form.check_box :parkhasentrancefee %>
     </div>
   <% end %>
 </div>
-
-<div class="col-4">
+</div>
+</div>
+<div class="row">
+  <h4>Sports</h4>
   <%= f.fields_for :sport do |sport_form| %>
-    <div class="field">
+<div class="col-md-3">
+    <div class="form-group">
       <%= sport_form.check_box :baseball %>
       <%= sport_form.label :baseball %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= sport_form.check_box :basketball %>
       <%= sport_form.label :basketball %>
     </div>
-
-    <div class="field">
+    <div class="form-group">
       <%= sport_form.check_box :lacrosse %>
       <%= sport_form.label :lacrosse %>
     </div>
-
-    <div class="field">
+</div>
+<div class="col-md-3">
+    <div class="form-group">
       <%= sport_form.check_box :tennis %>
       <%= sport_form.label :tennis %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= sport_form.check_box :soccer %>
       <%= sport_form.label :soccer %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= sport_form.check_box :volleyball %>
       <%= sport_form.label :volleyball %>
     </div>
-
-    <div class="field">
+</div>
+<div class="col-md-3">
+    <div class="form-group">
       <%= sport_form.check_box :football %>
       <%= sport_form.label :football %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= sport_form.check_box :frisbee %>
       <%= sport_form.label :frisbee %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= sport_form.check_box :golf %>
       <%= sport_form.label :golf %>
     </div>
-
-    <div class="field">
+</div>
+<div class="col-md-3">
+    <div class="form-group">
       <%= sport_form.check_box :cricket %>
       <%= sport_form.label :cricket %>
     </div>
 
-    <div class="field">
+    <div class="form-group">
       <%= sport_form.check_box :track %>
       <%= sport_form.label :track %>
     </div>
+</div>
   <% end %>
 </div>
 
-<div class="col-4">
+<div class="row">
+  <h4>Nature</h4>
   <%= f.fields_for :nature do |nature_form| %>
-  <div class="field">
+<div class="col-md-3">
+  <div class="form-group">
     <%= nature_form.check_box :hiking %>
     <%= nature_form.label :hiking %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= nature_form.check_box :biking %>
     <%= nature_form.label :biking %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= nature_form.check_box :dronefield %>
     <%= nature_form.label :dronefield %>
   </div>
-
-  <div class="field">
+</div>
+<div class="col-md-3">
+  <div class="form-group">
     <%= nature_form.check_box :garden %>
     <%= nature_form.label :garden %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= nature_form.check_box :greenhouse %>
     <%= nature_form.label :greenhouse %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= nature_form.check_box :camping %>
     <%= nature_form.label :camping %>
   </div>
-
-  <div class="field">
+</div>
+<div class="col-md-3">
+  <div class="form-group">
     <%= nature_form.check_box :dogpark %>
     <%= nature_form.label :dogpark %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= nature_form.check_box :lake %>
     <%= nature_form.label :lake %>
   </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= nature_form.check_box :fishing %>
     <%= nature_form.label :fishing %>
   </div>
+</div>
   <% end %>
 </div>
 
-<div class="col-4">
+<div class="row">
+  <h4>Facilities</h4>
   <%= f.fields_for :facility do |facility_form| %>
-  <div class="field">
+  <div class="col-md-3">
+  <div class="form-group">
     <%= facility_form.check_box :playground %>
     <%= facility_form.label :playground %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :picnicshelter %>
     <%= facility_form.label :picnicshelter %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :picnicarea %>
     <%= facility_form.label :picnicarea %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :grill %>
     <%= facility_form.label :grill %>
   </div>
-
-  <div class="field">
+</div>
+<div class="col-md-3">
+  <div class="form-group">
     <%= facility_form.check_box :excerciseequipment %>
     <%= facility_form.label :excerciseequipment %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :stage %>
     <%= facility_form.label :stage %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :recycling %>
     <%= facility_form.label :recycling %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :compost %>
     <%= facility_form.label :compost %>
   </div>
-
-  <div class="field">
+</div>
+<div class="col-md-3">
+  <div class="form-group">
     <%= facility_form.check_box :restroom %>
     <%= facility_form.label :restroom %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :bikeparking %>
     <%= facility_form.label :bikeparking %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :parking %>
     <%= facility_form.label :parking %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :food %>
     <%= facility_form.label :food %>
   </div>
-
-  <div class="field">
+</div>
+<div class="col-md-3">
+  <div class="form-group">
     <%= facility_form.check_box :boathouse %>
     <%= facility_form.label :boathouse %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :skateboarding %>
     <%= facility_form.label :skateboarding %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :iceskating %>
     <%= facility_form.label :iceskating %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= facility_form.check_box :tetherball %>
     <%= facility_form.label :tetherball %>
   </div>
+</div>
   <% end %>
 </div>
 

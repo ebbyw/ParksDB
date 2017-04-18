@@ -20,4 +20,39 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  helpers:
+    label:
+      park:
+        parkname: Park Name
+        parkwebsite: Park Website
+        parkhours: Park Hours
+        parkaddress: Park Address
+      park_office:
+        officeaddress: Office Address
+        officehours: Office Hours
+        officeemail: Office E-mail
+        officephone: Office Phone Number
+        parkhasentrancefee: Entrance Fee Required
+      sport:
+        baseball: Baseball
+        basketball: Basketball
+        lacrosse: Lacrosse
+        tennis: Tennis
+        soccer: Soccer
+        volleyball: Volleyball
+        football: Football
+        frisbee: Frisbee
+        golf: Golf
+        cricket: Cricket
+        track: Track
+      nature:
+        hiking: Hiking
+        biking: Biking
+        dronefield: Drone Field
+        garden: Garden
+        greenhouse: Greenhouse
+        camping: Camping
+        dogpark: Dog Area
+        lake: Lake
+        fishing: Fishing
+

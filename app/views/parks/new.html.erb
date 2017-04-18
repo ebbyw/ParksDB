@@ -5,10 +5,6 @@
 <script>setPageHeaderSubtitle("Create a New Park");</script>
 <script>setSelectedNavPage("addParkNavItem");</script>
 
-<div class="well">
-
-<%= render 'form', park: @park %>
+<%= render partial: 'form', locals: {park: @park} %>
 
 <%= link_to 'Back', "admin/parks" %>
-
-</div>
