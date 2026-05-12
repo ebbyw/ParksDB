@@ -1,0 +1,22 @@
+# Convenience: one-command Postgres + PostGIS for local dev.
+# Run: docker compose up -d
+services:
+  db:
+    image: imresamu/postgis:16-3.4
+    container_name: parksdb-postgres
+    environment:
+      POSTGRES_USER: parksdb
+      POSTGRES_PASSWORD: parksdb_dev
+      POSTGRES_DB: parksdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - parksdb_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U parksdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  parksdb_data:

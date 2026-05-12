@@ -1,0 +1,217 @@
+/* Minimal, clean styles. No CSS framework — keeps the MVP lean. */
+:root {
+    --bg: #f7f8f5;
+    --panel: #ffffff;
+    --ink: #1f2a24;
+    --muted: #6b7570;
+    --line: #e3e6e1;
+    --accent: #2e7d4f;
+    --accent-ink: #ffffff;
+    --danger: #b3261e;
+    --warn: #b9770e;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body {
+    font: 14px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+button {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    cursor: pointer;
+}
+button.secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+}
+button.danger { background: var(--danger); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+
+input[type=text], input[type=email], input[type=password], input[type=number], textarea, select {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px 10px;
+    background: #fff;
+}
+label { display: block; font-size: 12px; color: var(--muted); margin: 8px 0 4px; }
+
+/* Top bar */
+.topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 16px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+    z-index: 1000;
+}
+.topbar h1 { margin: 0; font-size: 18px; }
+.topbar nav { display: flex; gap: 8px; align-items: center; }
+.topbar .role-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: white;
+}
+
+/* Main layout */
+.layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    height: calc(100vh - 49px);
+}
+.sidebar {
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+    overflow-y: auto;
+    padding: 16px;
+}
+.sidebar h3 { margin: 16px 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.sidebar .feature-group { margin-bottom: 12px; }
+.sidebar .feature-row {
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 0;
+    cursor: pointer;
+}
+.sidebar .feature-row input { width: auto; }
+.sidebar .cat-label {
+    text-transform: capitalize;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    margin: 6px 0 2px;
+    letter-spacing: .02em;
+}
+
+/* Pill toggles for park types */
+.pill-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+.pill {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.pill:hover { border-color: var(--accent); }
+.pill-on {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+}
+
+.map-wrap { position: relative; height: 100%; }
+.leaflet-container { height: 100%; width: 100%; }
+
+/* Park detail panel */
+.detail {
+    position: absolute;
+    top: 12px; right: 12px;
+    width: 340px;
+    max-height: calc(100% - 24px);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.08);
+    padding: 16px;
+    overflow-y: auto;
+    z-index: 500;
+}
+.detail h2 { margin: 0 0 4px; font-size: 18px; }
+.detail .address { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+.detail .features { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.detail .chip {
+    background: #eef3ec;
+    color: var(--accent);
+    border-radius: 999px;
+    padding: 3px 10px;
+    font-size: 12px;
+}
+/* Park type chips read as the park's identity — give them more weight. */
+.detail .chip-type {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+}
+.detail .close-x {
+    position: absolute; top: 6px; right: 8px;
+    background: none; color: var(--muted); padding: 4px 8px;
+}
+
+/* Modals */
+.modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.4);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2000;
+}
+.modal {
+    background: var(--panel);
+    border-radius: 10px;
+    padding: 24px;
+    width: min(520px, 92vw);
+    max-height: 90vh; overflow-y: auto;
+}
+.modal h2 { margin-top: 0; }
+.mini-map {
+    height: 220px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+}
+.mini-map .leaflet-container { height: 100%; width: 100%; }
+.modal .actions {
+    display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px;
+}
+.error {
+    background: #fef2f2; color: var(--danger);
+    border: 1px solid #fecaca;
+    padding: 8px 12px; border-radius: 6px;
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+/* Moderation page */
+.mod-list { padding: 16px; }
+.mod-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+.mod-card pre {
+    background: #f5f5f3;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 12px;
+}
+.mod-card .actions { display: flex; gap: 8px; margin-top: 12px; }
+
+/* Hint for empty filter result */
+.empty-hint {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: 13px;
+    color: var(--muted);
+    z-index: 500;
+}
