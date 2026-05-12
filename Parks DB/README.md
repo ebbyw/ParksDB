@@ -117,6 +117,13 @@ Before exposing this to the internet:
 6. Pin Postgres behind a private network; don't expose 5432.
 7. Back up the database; the `submissions` and `audit_log` tables are append-only and worth preserving.
 
-## License
+## Licensing
 
-MIT (or whatever you want — this is your project).
+ParksDB uses two separate licenses for the two kinds of things this repo produces:
+
+* **Code** — [GNU AGPL-3.0](LICENSE). The Affero variant of GPL is specifically designed for hosted services: if you run a modified version of ParksDB as a public website, you have to make your source modifications available to your users. Plain GPL only triggers on *distribution* of binaries, which a SaaS would otherwise sidestep.
+* **Park data** — [Open Database License v1.0 (ODbL)](LICENSE-DATA). The park records, submissions, features, and any aggregate dataset you can extract from the database are licensed separately under ODbL — the same license OpenStreetMap uses. ODbL is share-alike for *databases*: anyone is free to use, modify, and redistribute the data as long as they (a) attribute ParksDB, (b) share derivative databases under ODbL too, and (c) keep any technical restrictions off the data (no DRM).
+
+**For contributors:** by submitting a park, edit, or moderation action, you agree that your contribution is licensed under ODbL and may be redistributed under those terms. By contributing code via pull request, you agree that your contribution is licensed under AGPL-3.0.
+
+**A note on the split:** code and data drift apart over time — a future maintainer might fork the code under AGPL but want their own park database under a different license, or vice versa. Keeping the two licenses physically separate (`LICENSE` for code, `LICENSE-DATA` for content) is the cleanest way to make that possible without ambiguity.
