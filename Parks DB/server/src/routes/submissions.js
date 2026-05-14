@@ -18,6 +18,13 @@ import { badRequest, notFound } from '../utils/errors.js';
 
 const router = Router();
 
+// Conditional limiter — skip for admins/scrapers
+const conditionalWriteLimiter = (req, res, next) => {
+    // Skip rate limit for admin and scraper roles
+    if (req.user?.role === 'admin' || req.user?.role === 'scraper') return next();
+    return writeLimiter(req, res, next);
+};
+
 // ---- shared payload schemas -----------------------------------------
 const parkPayloadSchema = z.object({
     name: z.string().min(2).max(120),
@@ -57,7 +64,7 @@ const createBodySchema = z.discriminatedUnion('kind', [
 router.post(
     '/',
     requireAuth,
-    writeLimiter,
+    conditionalWriteLimiter,
     validate({ body: createBodySchema }),
     verifyCaptcha,
     async (req, res, next) => {

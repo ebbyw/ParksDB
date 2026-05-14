@@ -12,11 +12,30 @@ services:
       - "5432:5432"
     volumes:
       - parksdb_data:/var/lib/postgresql/data
+      - ./server/migrations:/migrations
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U parksdb"]
       interval: 5s
       timeout: 5s
       retries: 5
+
+  scraper:
+    build:
+      context: ./scraper
+      dockerfile: Dockerfile
+    container_name: parksdb-scraper
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://parksdb:parksdb_dev@db:5432/parksdb
+      API_BASE: http://host.docker.internal:4000/api
+      DRY_RUN: ${DRY_RUN:-false}
+    networks:
+      - default
+    profiles:
+      - scraper
+    # Override to run: docker compose --profile scraper run scraper npm run scrape
 
 volumes:
   parksdb_data:

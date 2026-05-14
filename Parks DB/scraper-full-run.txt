@@ -1,0 +1,51 @@
+ Network parksdb_default Creating 
+ Network parksdb_default Created 
+time="2026-05-13T19:29:29-07:00" level=warning msg="Found orphan containers ([parksdb-scraper-run-7313a29596b3 parksdb-scraper-run-ec350c18c3d5 parksdb-scraper-run-430200bc079b parksdb-scraper-run-debdacbc3a9d parksdb-scraper-run-d42625020d0f]) for this project. If you removed or renamed this service in your compose file, you can run this command with the --remove-orphans flag to clean it up."
+ Container parksdb-postgres Creating 
+ Container parksdb-postgres Created 
+ Container parksdb-postgres Starting 
+ Container parksdb-postgres Started 
+ Container parksdb-postgres Waiting 
+ Container parksdb-postgres Healthy 
+ Container parksdb-scraper-run-559b214b6b0f Creating 
+ Container parksdb-scraper-run-559b214b6b0f Created 
+
+> parksdb-scraper@0.1.0 scrape
+> node scraper.js
+
+🔐 Authenticating scraper...
+  ✓ Logged in as scraper@parksdb.local
+
+📍 Discovering park URLs from https://www.seattle.gov/parks/parks...
+✓ Found 443 parks
+
+🔄 Processing 443 parks...
+
+[1/443] parks-a-d
+  ⏭️  Category page — skip
+[2/443] parks-e-h
+  ⏭️  Category page — skip
+[3/443] parks-i-l
+  ⏭️  Category page — skip
+[4/443] parks-m-p
+  ⏭️  Category page — skip
+[5/443] parks-q-t
+  ⏭️  Category page — skip
+[6/443] parks-u-z
+  ⏭️  Category page — skip
+[7/443] 12th-ave-square-park
+  Name: 12th Ave Square Park
+  Address: 100 Dexter Ave N, Seattle, WA, 98109
+  Features: 0 ()
+  🔍 Geocoding: "100 Dexter Ave N, Seattle, WA, 98109, Seattle"
+    ✓ Geocoded: 47.6190581, -122.3418733
+  ❌ API error: 429
+    Rate limit hit — slow down submissions. Waiting 5s...
+[8/443] 12th-west-and-west-howe-park
+  Name: 12th West & West Howe Park
+  Address: 1200 W Howe St, Seattle, WA 98119
+  Features: 1 (Play Area)
+  🔍 Geocoding: "1200 W Howe St, Seattle, WA 98119, Seattle"
+    ✓ Geocoded: 47.6359770, -122.3729600
+  ❌ API error: 429
+    Rate limit hit — slow down submissions. Waiting 5s...

@@ -1,0 +1,24 @@
+{
+  "name": "parksdb-scraper",
+  "version": "0.1.0",
+  "description": "Seattle Parks & Recreation scraper for ParksDB",
+  "type": "module",
+  "main": "scraper.js",
+  "bin": {
+    "scraper": "scraper.js"
+  },
+  "scripts": {
+    "scrape": "node scraper.js",
+    "scrape:dry": "DRY_RUN=true node scraper.js",
+    "scrape:test": "DRY_RUN=true MAX_PARKS=10 node scraper.js",
+    "scrape:docker": "docker-compose --remove-orphans --profile scraper run scraper npm run scrape",
+    "scrape:docker:test": "docker-compose --remove-orphans --profile scraper run scraper npm run scrape:test"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "pg": "^8.12.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

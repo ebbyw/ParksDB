@@ -36,6 +36,30 @@ app.use(
 app.use(express.json({ limit: '64kb' }));
 app.use(cookieParser());
 
+// Extract user from JWT for rate limiter skip logic (optional auth — doesn't error if missing)
+app.use((req, res, next) => {
+  const authHeader = req.headers.authorization;
+  if (authHeader?.startsWith('Bearer ')) {
+    const token = authHeader.slice(7);
+    try {
+      // Decode JWT to check role (skip signature verification for skip logic only)
+      const [, payload] = token.split('.');
+      if (payload) {
+        const decoded = JSON.parse(Buffer.from(payload, 'base64').toString());
+        // Only set req.user if both userId and role are present
+        if (decoded.userId && decoded.role) {
+          req.user = { id: decoded.userId, role: decoded.role };
+          if (process.env.DEBUG_AUTH) console.log(`[JWT] Extracted role: ${decoded.role}`);
+        }
+      }
+    } catch (e) {
+      // Invalid token; req.user stays undefined, requireAuth middleware will validate properly
+      if (process.env.DEBUG_AUTH) console.log(`[JWT] Decode failed:`, e.message);
+    }
+  }
+  next();
+});
+
 // Global rate limit applies to every route (auth routes layer on a stricter one).
 app.use(globalLimiter);
 
