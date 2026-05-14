@@ -23,8 +23,10 @@ const FEATURES = [
     { slug: 'tennis-court',      name: 'Tennis court',      kind: 'facility', category: 'racket sports' },
     { slug: 'pickleball-court',  name: 'Pickleball court',  kind: 'facility', category: 'racket sports' },
     { slug: 'volleyball-court',  name: 'Volleyball court',  kind: 'facility', category: 'ball sports' },
+    { slug: 'multi-use-court',    name: 'Multi-use court',    kind: 'facility', category: 'ball sports' },
     { slug: 'soccer-field',      name: 'Soccer field',      kind: 'facility', category: 'field sports' },
     { slug: 'baseball-field',    name: 'Baseball field',    kind: 'facility', category: 'field sports' },
+    { slug: 'football-field',     name: 'Football field',     kind: 'facility', category: 'field sports' },
     { slug: 'running-track',     name: 'Running track',     kind: 'facility', category: 'fitness' },
     { slug: 'swimming-pool',     name: 'Swimming pool',     kind: 'facility', category: 'water' },
     { slug: 'splash-pad',        name: 'Splash pad',        kind: 'facility', category: 'water' },
@@ -32,6 +34,7 @@ const FEATURES = [
     { slug: 'walking-trail',     name: 'Walking trail',     kind: 'facility', category: 'paths' },
     { slug: 'bike-trail',        name: 'Bike trail',        kind: 'facility', category: 'paths' },
     { slug: 'fishing',           name: 'Fishing access',    kind: 'facility', category: 'water' },
+    { slug: 'dog-off-leash-area', name: 'Off-leash dog area', kind: 'facility', category: 'recreation' },
 
     // ===== amenity — small on-site item =====
     { slug: 'public-bathroom',   name: 'Public bathroom',   kind: 'amenity', category: 'comfort' },
