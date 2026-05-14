@@ -22,6 +22,7 @@ const RATE_LIMIT_MS = 5000; // 5s between requests (API rate limit)
 const DRY_RUN = process.env.DRY_RUN === 'true'; // Log without submitting if true
 const MAX_PARKS = process.env.MAX_PARKS ? parseInt(process.env.MAX_PARKS) : null; // Limit parks for testing
 const ALLOW_RESUBMIT = process.env.ALLOW_RESUBMIT === 'true'; // Allow re-submission of already-submitted parks
+const DEXTER_PLACEHOLDER = '100 Dexter Ave N, Seattle, WA, 98109';
 const LOG_FILE = path.join(__dirname, 'scraper.log');
 
 // Scraper auth credentials
@@ -235,12 +236,12 @@ function parseFeatures(featureStrings) {
 
 // Geocode address via Nominatim (OpenStreetMap) — same as frontend form
 // Rate limit: ~1 req/sec (scraper already does this)
-async function geocodeAddress(address, city = 'Seattle', region = 'WA') {
-  if (!address && !city) {
+async function geocodeAddress(address, city = 'Seattle', region = 'WA', name = null) {
+  if (!address && !city && !name) {
     return null;
   }
 
-  const q = [address, city, region, 'US'].filter(Boolean).join(', ');
+  const q = [name, address, city, region, 'US'].filter(Boolean).join(', ');
   const url =
     'https://nominatim.openstreetmap.org/search?' +
     new URLSearchParams({ q, format: 'json', limit: '1' });
@@ -630,6 +631,13 @@ async function main() {
           log(`  ✨ New features: ${newFeatures.map((f) => f.original || f.slug).join(', ')}`);
         }
 
+        // Dexter Ave is the Parks dept HQ placeholder — not the park's real address.
+        // Null it out and geocode by name instead so the park gets real coordinates.
+        if (park.address === DEXTER_PLACEHOLDER) {
+          log(`  ℹ️  Dexter placeholder — geocoding by name`);
+          park.address = null;
+        }
+
         // Geocode address
         if (!park.lat || !park.lng) {
           if (park.address) {
@@ -645,10 +653,18 @@ async function main() {
               continue;
             }
           } else {
-            log('  ⚠️  No address to geocode');
-            stats.needsGeocoding++;
-            await sleep(RATE_LIMIT_MS);
-            continue;
+            // No address — geocode by park name
+            log(`  🔍 Geocoding by name: "${park.name}, ${park.city}"`);
+            const coords = await geocodeAddress(null, park.city, park.region, park.name);
+            if (coords) {
+              park.lat = coords.lat;
+              park.lng = coords.lng;
+            } else {
+              log('  ⚠️  Geocoding by name failed — skip');
+              stats.needsGeocoding++;
+              await sleep(RATE_LIMIT_MS);
+              continue;
+            }
           }
         }
 

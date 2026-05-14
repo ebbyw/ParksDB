@@ -4,6 +4,28 @@
 
 BEGIN;
 
+-- 0. Auto-approve pending 'create' submissions that have real coordinates and
+--    do NOT use the Dexter Ave placeholder address.
+WITH to_approve AS (
+  SELECT id
+  FROM submissions
+  WHERE status = 'pending'
+    AND kind = 'create'
+    AND (payload->>'address') IS DISTINCT FROM '100 Dexter Ave N, Seattle, WA, 98109'
+    AND (payload->>'lat') IS NOT NULL
+    AND (payload->>'lng') IS NOT NULL
+),
+approved AS (
+  UPDATE submissions
+  SET status = 'approved',
+      moderator_id = (SELECT id FROM users WHERE role = 'admin' LIMIT 1),
+      moderator_note = 'Auto-approved: real coordinates, non-placeholder address',
+      moderated_at = NOW()
+  WHERE id IN (SELECT id FROM to_approve)
+  RETURNING id
+)
+SELECT COUNT(*) as auto_approved_count FROM approved;
+
 -- 1. Reject pending submissions WITH the Dexter address (the duplicates)
 WITH submissions_to_reject AS (
   SELECT id, payload->>'name' as name, payload->>'address' as address
