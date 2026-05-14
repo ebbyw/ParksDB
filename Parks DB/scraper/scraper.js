@@ -370,29 +370,28 @@ function parseParkPage(html, url) {
     }
   }
 
-  // Extract address from location pin link (Google Maps icon)
-  // Format: <a href="goo.gl/maps/..."><svg>...</svg>2150 S Norman St., Seattle, WA 98144</a>
+  // Extract address from Google Maps link (icon varies: <svg>, <i class="fas">, etc.)
+  // Use .text() to strip whatever icon markup is present.
   let address = null;
 
-  // Look for any link with maps in href
   const mapLink = $('a[href*="goo.gl"], a[href*="maps.google"], a[href*="google.com/maps"]').first();
   if (mapLink.length) {
-    const linkHtml = mapLink.html();
-    // Extract text after SVG closing tag
-    const textMatch = linkHtml.match(/<\/svg>(.*?)$/i);
-    if (textMatch) {
-      address = textMatch[1].trim();
-    }
+    address = mapLink.text().trim() || null;
   }
 
-  // Fallback: look for address pattern in page text (most specific first)
+  // Fallback: match address pattern in page text.
+  // Street name may start with a digit (e.g. "1520 26th Ave. S") so allow \w not just [A-Z].
   if (!address) {
     const textContent = $.text();
-    // Match: number + street + direction/type + city/state/zip
-    const addressMatch = textContent.match(/(\d+\s+[A-Z][a-z\s.]+(?:Avenue|Ave|Street|St|Road|Rd|Drive|Dr|Way|Place|Pl)(?:\s+[A-Z]{1,2})?[.,\s]+Seattle[.,\s]+WA[.,\s]+\d{5})/i);
+    const addressMatch = textContent.match(/\d+\s+\w[\w\s.]+(?:Avenue|Ave|Street|St|Road|Rd|Drive|Dr|Way|Place|Pl|Boulevard|Blvd)(?:\s+[A-Z]{1,2})?[.,\s]+Seattle[.,\s]+WA[.,\s]+\d{5}/i);
     if (addressMatch) {
       address = addressMatch[0].trim();
     }
+  }
+
+  // Exclude the Parks dept mailing address — it's not a park location.
+  if (address === DEXTER_PLACEHOLDER) {
+    address = null;
   }
 
   return {
