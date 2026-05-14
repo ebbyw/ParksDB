@@ -599,8 +599,15 @@ async function main() {
         }
 
         stats.parsed++;
+
+        // Dexter Ave is the Parks dept HQ placeholder — not the park's real address.
+        // Null it out early so duplicate checks and geocoding use the correct value.
+        if (park.address === DEXTER_PLACEHOLDER) {
+          park.address = null;
+        }
+
         log(`  Name: ${park.name}`);
-        log(`  Address: ${park.address || '(not found)'}`);
+        log(`  Address: ${park.address || '(not found — will geocode by name)'}`);
         log(`  Features: ${park.features.length} (${park.rawFeatures.join(', ')})`);
 
         // Check if already exists in parks table
@@ -629,13 +636,6 @@ async function main() {
         if (newFeatures.length) {
           stats.newFeatures.push(...newFeatures.map((f) => f.slug));
           log(`  ✨ New features: ${newFeatures.map((f) => f.original || f.slug).join(', ')}`);
-        }
-
-        // Dexter Ave is the Parks dept HQ placeholder — not the park's real address.
-        // Null it out and geocode by name instead so the park gets real coordinates.
-        if (park.address === DEXTER_PLACEHOLDER) {
-          log(`  ℹ️  Dexter placeholder — geocoding by name`);
-          park.address = null;
         }
 
         // Geocode address
