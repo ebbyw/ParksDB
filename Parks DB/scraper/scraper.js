@@ -27,7 +27,8 @@ const LOG_FILE = path.join(__dirname, 'scraper.log');
 
 // Scraper auth credentials
 const SCRAPER_EMAIL = process.env.SCRAPER_EMAIL || 'scraper@parksdb.local';
-const SCRAPER_PASSWORD = process.env.SCRAPER_PASSWORD || 'SeattleParks2024SeattleParks2024';
+const SCRAPER_PASSWORD = process.env.SCRAPER_PASSWORD;
+if (!SCRAPER_PASSWORD) throw new Error('SCRAPER_PASSWORD env var is required');
 let authToken = null;
 let tokenExpiry = null; // Track token expiry for proactive refresh
 

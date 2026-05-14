@@ -38,3 +38,9 @@ id_ed25519*
 *.sql.gz
 *.dump
 pgdata/
+
+# Scraper runtime output
+scraper-*.txt
+
+# Sample/reference web pages (scraped third-party content)
+../Sample Seattle Park Webpage/
