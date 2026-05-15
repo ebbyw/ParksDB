@@ -173,7 +173,7 @@ async function seedAdmin(client) {
          VALUES ($1, $2, 'admin', 'Admin') RETURNING id`,
         [email, hash],
     );
-    console.log(`✓ Admin created: ${email} / ${password}`);
+    console.log(`✓ Admin created: ${email}`);
     return result.rows[0].id;
 }
 

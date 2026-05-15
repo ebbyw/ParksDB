@@ -37,11 +37,30 @@ app.use(
 app.use(express.json({ limit: '64kb' }));
 app.use(cookieParser());
 
-// Populate req.user (verified signature) before rate limiters so skip logic is safe.
-app.use(optionalAuth);
-
-// Global rate limit applies to every route (auth routes layer on a stricter one).
+// Global rate limit first — before any auth processing — so JWT work is also covered.
 app.use(globalLimiter);
+
+// CSRF protection for cookie-authenticated requests: reject cross-origin state-changing
+// requests whose Origin doesn't match the allowlist. Browsers always send Origin on
+// cross-origin POST/PUT/PATCH/DELETE; HTML forms cannot set Content-Type: application/json.
+app.use((req, res, next) => {
+    const method = req.method.toUpperCase();
+    if (method === 'GET' || method === 'HEAD' || method === 'OPTIONS') return next();
+    const origin = req.headers.origin;
+    if (origin && !config.corsOrigins.includes(origin)) {
+        return res.status(403).json({ error: { code: 'forbidden', message: 'CSRF check failed' } });
+    }
+    if (!origin && !req.headers['x-requested-with']) {
+        const ct = req.headers['content-type'] || '';
+        if (!ct.startsWith('application/json')) {
+            return res.status(403).json({ error: { code: 'forbidden', message: 'CSRF check failed' } });
+        }
+    }
+    next();
+});
+
+// Populate req.user (verified signature) for auth-aware middleware downstream.
+app.use(optionalAuth);
 
 // Health (no rate-limit-bypass concerns: still subject to global limit).
 app.get('/api/health', (_req, res) => res.json({ ok: true, env: config.env }));

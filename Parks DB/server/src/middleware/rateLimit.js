@@ -4,13 +4,11 @@
 import rateLimit from 'express-rate-limit';
 
 // Per-IP. Used as a baseline on every route.
-// Skip for authenticated admin/scraper users.
 export const globalLimiter = rateLimit({
     windowMs: 15 * 60_000,         // 15 minutes
     limit: 300,                    // 300 req / 15 min / IP
     standardHeaders: 'draft-7',
     legacyHeaders: false,
-    skip: (req) => req.user?.role === 'admin' || req.user?.role === 'scraper',
     message: { error: { code: 'rate_limited', message: 'Too many requests' } },
 });
 
