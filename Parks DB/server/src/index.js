@@ -7,6 +7,7 @@ import { config } from './config.js';
 import { pool } from './db.js';
 import { globalLimiter } from './middleware/rateLimit.js';
 import { optionalAuth } from './middleware/auth.js';
+import { doubleCsrfProtection, generateToken } from './middleware/csrf.js';
 import { HttpError } from './utils/errors.js';
 
 import authRoutes from './routes/auth.js';
@@ -40,24 +41,9 @@ app.use(cookieParser());
 // Global rate limit first — before any auth processing — so JWT work is also covered.
 app.use(globalLimiter);
 
-// CSRF protection for cookie-authenticated requests: reject cross-origin state-changing
-// requests whose Origin doesn't match the allowlist. Browsers always send Origin on
-// cross-origin POST/PUT/PATCH/DELETE; HTML forms cannot set Content-Type: application/json.
-app.use((req, res, next) => {
-    const method = req.method.toUpperCase();
-    if (method === 'GET' || method === 'HEAD' || method === 'OPTIONS') return next();
-    const origin = req.headers.origin;
-    if (origin && !config.corsOrigins.includes(origin)) {
-        return res.status(403).json({ error: { code: 'forbidden', message: 'CSRF check failed' } });
-    }
-    if (!origin && !req.headers['x-requested-with']) {
-        const ct = req.headers['content-type'] || '';
-        if (!ct.startsWith('application/json')) {
-            return res.status(403).json({ error: { code: 'forbidden', message: 'CSRF check failed' } });
-        }
-    }
-    next();
-});
+// CSRF protection (double-submit cookie pattern). Skipped for Bearer token requests
+// (server-to-server / scraper). Browser clients must fetch /api/csrf-token first.
+app.use(doubleCsrfProtection);
 
 // Populate req.user (verified signature) for auth-aware middleware downstream.
 app.use(optionalAuth);
@@ -68,6 +54,8 @@ app.get('/api/health', (_req, res) => res.json({ ok: true, env: config.env }));
 app.get('/api/config', (_req, res) =>
     res.json({ captchaSitekey: config.captcha.sitekey, captchaDisabled: config.captcha.disabled }),
 );
+// CSRF token endpoint — browser fetches this on load, then sends x-csrf-token header.
+app.get('/api/csrf-token', (req, res) => res.json({ csrfToken: generateToken(req, res) }));
 
 app.use('/api/auth',        authRoutes);
 app.use('/api/parks',       parksRoutes);

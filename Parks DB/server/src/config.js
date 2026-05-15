@@ -30,6 +30,7 @@ export const config = {
         refreshTtl: process.env.JWT_REFRESH_TTL || '7d',
     },
     bcryptRounds: parseInt(process.env.BCRYPT_ROUNDS || '12', 10),
+    csrfSecret: process.env.CSRF_SECRET || `csrf:${process.env.JWT_SECRET || ''}`,
 
     captcha: {
         disabled: bool('CAPTCHA_DISABLED', false),
